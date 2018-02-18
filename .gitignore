@@ -15,3 +15,10 @@ hs_err_pid*
 *.jpg
 *.ppm
 *.zip
+*.xml
+*.xml
+nbproject/build-impl.xml
+ImageMagick/www/webp.html
+ImageMagick/www/support.html
+ImageMagick/www/subversion.html
+*.xml

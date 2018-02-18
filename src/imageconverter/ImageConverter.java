@@ -29,7 +29,7 @@ public class ImageConverter {
             {
                 convertPath = "/usr/bin/convert";
             } else {
-                convertPath = "/usr/local/bin/convert";
+                convertPath = "ImageMagick\\magick convert";
             }
 
             if (format.equals("ppm")) {

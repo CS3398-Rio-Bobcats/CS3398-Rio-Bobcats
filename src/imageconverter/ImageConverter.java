@@ -24,13 +24,13 @@ public class ImageConverter {
                 && getFormats().contains(getFileExtensionFromPath(inputFilePath))) {
 
             String outputPath = getOutputPathFromInputPath(inputFilePath, format);
-            String convertPath = "";
-            if (System.getProperty("os.name").equals("Linux"))
+            String convertPath = "ImageMagick\\magick.exe convert";
+            /*if (System.getProperty("os.name").equals("Linux"))
             {
                 convertPath = "/usr/bin/convert";
             } else {
-                convertPath = "ImageMagick\\magick convert";
-            }
+                convertPath = "ImageMagick\\magick.exe convert";
+            }*/
 
             if (format.equals("ppm")) {
                 executeCommand(convertPath + " -compress none " + inputFilePath + " " + getOutputPathFromInputPath(inputFilePath, format));

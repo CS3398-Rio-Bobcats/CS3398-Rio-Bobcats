@@ -22,3 +22,5 @@ ImageMagick/www/webp.html
 ImageMagick/www/support.html
 ImageMagick/www/subversion.html
 *.xml
+*.properties
+*.xml

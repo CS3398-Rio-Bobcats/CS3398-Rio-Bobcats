@@ -24,13 +24,20 @@ public class ImageConverter {
                 && getFormats().contains(getFileExtensionFromPath(inputFilePath))) {
 
             String outputPath = getOutputPathFromInputPath(inputFilePath, format);
-            String convertPath = "ImageMagick\\magick.exe convert";
-            /*if (System.getProperty("os.name").equals("Linux"))
+            String convertPath = "";
+            
+            if (System.getProperty("os.name").contains("Linux"))
             {
                 convertPath = "/usr/bin/convert";
-            } else {
+            } 
+            else if (System.getProperty("os.name").contains("Windows"))
+            {
                 convertPath = "ImageMagick\\magick.exe convert";
-            }*/
+            }
+            else 
+            {
+                System.out.println("Your OS is not supported. Convert the image to PPM manually.");
+            }
 
             if (format.equals("ppm")) {
                 executeCommand(convertPath + " -compress none " + inputFilePath + " " + getOutputPathFromInputPath(inputFilePath, format));

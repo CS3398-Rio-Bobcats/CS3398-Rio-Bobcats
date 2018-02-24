@@ -1,4 +1,5 @@
 
+import ImagePreview.ImagePreview;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -8,13 +9,26 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import steganographer.Steganographer;
 import imageconverter.ImageConverter;
+import javax.swing.*;
 
 public class Main {
-    
+   
     static Scanner scan = new Scanner(System.in);
     
     public static void main(String[] args) throws IOException {
         
+/*      //Code used for ImagePreview test
+        File img = new File("tux.jpg");
+    
+        ImagePreview ip = new ImagePreview(img, 150);
+    
+        JFrame frame = new JFrame();
+        frame.add(ip);
+        frame.setSize(400,400);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+        */
+
         System.out.println("Welcome to the Steganographer!");
         int option = 5;
         

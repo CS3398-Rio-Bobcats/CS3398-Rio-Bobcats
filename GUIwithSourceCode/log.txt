@@ -1,0 +1,8 @@
+24/02/2018 04:47:52.842 - [MainAppGUI.<init>] :
+	[INFO] - User has loaded main menu of GUI
+24/02/2018 04:48:01.153 - [MainAppGUI$5.actionPerformed] :
+	[INFO] - Convert image to (ppm, jpg, jpeg, png, gif)
+24/02/2018 04:48:03.280 - [MainAppGUI$19.actionPerformed] :
+	[INFO] - User is searching for file
+24/02/2018 04:48:21.560 - [MainAppGUI$19.actionPerformed] :
+	[INFO] - User is searching for file

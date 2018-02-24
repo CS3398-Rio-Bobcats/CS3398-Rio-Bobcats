@@ -1,0 +1,2 @@
+23/02/2018 08:09:02.676 - [guiattempt.MainAppGUI.<init>] :
+	[INFO] - User has loaded main menu of GUI

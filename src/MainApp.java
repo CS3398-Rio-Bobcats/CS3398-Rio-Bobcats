@@ -1,5 +1,4 @@
 
-import ImagePreview.ImagePreview;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -8,42 +7,18 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import steganographer.Steganographer;
-import imageconverter.ImageConverter;
-import javax.swing.*;
+import imageconverter.ImageConverter; 
+import java.util.InputMismatchException;
+import java.io.*;
 
-public class Main {
-   
+
+public class MainApp {
+    
     static Scanner scan = new Scanner(System.in);
     
-    public static void main(String[] args) throws IOException {
-        
-/*      //Code used for ImagePreview test
-        File img = new File("tux.jpg");
+   
     
-        ImagePreview ip = new ImagePreview(img, 150);
-    
-        JFrame frame = new JFrame();
-        frame.add(ip);
-        frame.setSize(400,400);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-        */
-
-        System.out.println("Welcome to the Steganographer!");
-        int option = 5;
-        
-        do {
-            
-            menu();
-            option = Integer.parseInt(scan.nextLine());
-            handleOption(option);
-            
-            
-        } while(option != 6);
-        
-    }
-    
-    public static void menu(){
+    private static void menu(){
         String menu = "\nSelect an option:\n"
                     + "---------------------\n"
                     + "1. Hide an text\n"
@@ -55,11 +30,16 @@ public class Main {
         System.out.println(menu);
     }
     
-    public static void handleOption(int option) {
-        if (option > 0 && option < 7) {
-            switch(option) {
+    public void runSoftware() {
+        int choice = 0;
+        boolean exitProgram = false;
+        do {
+            menu();
+            try {
+                choice = scan.nextInt();
+            switch(choice) {
                 case 1:
-                    hideText();
+   //                 hideText();
                     break;
                 case 2:
                     hideImage();
@@ -71,40 +51,48 @@ public class Main {
                     revealImage();
                     break;
                 case 5:
-                    convertImage();
+ //                   convertImage();
                     break;
                 case 6:
                     System.exit(0);
                     break;
             }
-        } else {
+        } catch(InputMismatchException ex) {
             System.err.println("Please select a valid option");
         }
-    }
+        } while (!exitProgram);
+        }
+        
     
-    public static void convertImage() {
+    
+    public static void convertImage(String filename, String format, boolean flag) {
         try {
+            /*
             System.out.println("File name to convert: ");
             String filename = scan.nextLine();
             System.out.println("Format to convert(ppm, jpg, jpeg, png, gif): ");
             String format = scan.nextLine();
-            
+            */
             ImageConverter.convert(filename, format);
+            flag = true;
             System.out.println("Succesfully converted file!");
         } catch (Exception ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MainApp.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public static void hideText() {
+    //trying to pass variables entered from GUI to funtion
+    //Need to figure out how to get messages to GUI
+    public static void hideText(String foo, String text, boolean flag) {
+        /*
         System.out.println("File name to hide the text: ");
         File f = new File(scan.nextLine());
         System.out.println("Text to hide: ");
         String text = scan.nextLine();
-        
+        */
+        File f = new File(foo);
         Steganographer steg = new Steganographer(f);
         boolean hidden = steg.hide(text.getBytes(), "text");
-        
+        flag = hidden;
         if (hidden) 
             System.out.println("Successfully hidden text into file (stego-image.ppm)!");
     }
@@ -122,7 +110,7 @@ public class Main {
             if (hidden)
                 System.out.println("Successfully hidden image into file (stego-image.ppm)!");
         } catch (IOException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MainApp.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -156,5 +144,25 @@ public class Main {
             return path.substring(i + 1);
         }
         return "";
+    }
+    
+     public static void main(String[] args) {
+        
+        MainApp app = new MainApp();
+        app.runSoftware();
+        /*
+        System.out.println("Welcome to the Steganographer!");
+        int option = 5;
+        
+        do {
+            
+            menu();
+            option = Integer.parseInt(scan.nextLine());
+            handleOption(option);
+            
+            
+        } while(option != 6);
+        */
+        
     }
 }

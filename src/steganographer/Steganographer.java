@@ -19,6 +19,10 @@ public class Steganographer {
         this.image = new PPMImage(image);
     }
 
+    public Steganographer(String f) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public boolean canHide(long size) {
         return this.image.getPixels().size() > size;
     }

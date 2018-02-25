@@ -1,0 +1,2 @@
+25/02/2018 02:25:27.251 - [MainAppGUI.<init>] :
+	[INFO] - User has loaded main menu of GUI

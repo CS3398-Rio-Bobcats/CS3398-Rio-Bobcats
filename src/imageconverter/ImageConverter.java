@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /*
  * This class converts any image of the following formats:
@@ -25,18 +27,16 @@ public class ImageConverter {
 
             String outputPath = getOutputPathFromInputPath(inputFilePath, format);
             String convertPath = "";
-            
-            if (System.getProperty("os.name").contains("Linux"))
+            if (System.getProperty("os.name").contains("nix"))
             {
                 convertPath = "/usr/bin/convert";
-            } 
-            else if (System.getProperty("os.name").contains("Windows"))
+            } else if (System.getProperty("os.name").contains("Windows"))
             {
-                convertPath = "ImageMagick\\magick.exe convert";
-            }
-            else 
-            {
-                System.out.println("Your OS is not supported. Convert the image to PPM manually.");
+                convertPath = "ImageMagick\\convert";
+            } else {
+                JFrame frame = new JFrame();
+                JOptionPane.showMessageDialog(frame, "Operating system not supported.\nManually convert the image with ImageMagick");
+                return "";
             }
 
             if (format.equals("ppm")) {
@@ -63,7 +63,7 @@ public class ImageConverter {
         return "";
     }
 
-    private static String getOutputPathFromInputPath(String path, String format) {
+    public static String getOutputPathFromInputPath(String path, String format) {
         return path.substring(0, path.lastIndexOf('.')) + "." + format;
     }
 

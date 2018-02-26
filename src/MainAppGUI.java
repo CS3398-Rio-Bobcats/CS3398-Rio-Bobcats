@@ -4,9 +4,6 @@
  * and open the template in the editor.
  */
 
-
-
-
 import ImagePreview.ImagePreview;
 import imageconverter.ImageConverter;
 import javax.swing.*;
@@ -26,6 +23,8 @@ import java.util.logging.*;
 import java.io.*;
 import java.util.logging.Formatter;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import steganographer.Steganographer;
 
 /**
@@ -114,8 +113,22 @@ public class MainAppGUI extends JFrame {
 
         // Creating a new panel to house the buttons within
         JPanel mainPanel = new JPanel(new BorderLayout());
-        JPanel buttonPanel = new JPanel(new GridLayout(6, 0));
-        JLabel introText = new JLabel("\n\nPlease select an option below:");
+        
+        Border line =  new LineBorder(Color.black, 1);
+        Font font1 = new Font("Times New Roman", Font.BOLD, 32);
+        JLabel header = new JLabel("STEGANOGRAPHY", JLabel.CENTER);
+        // add set properties and add panel to JFrame
+        header.setOpaque(true);
+        header.setForeground(Color.black);
+        header.setBackground(Color.white);
+        header.setBorder(line);
+        header.setFont(font1);
+        
+        JPanel buttonPanel = new JPanel(new GridLayout(6, 0));       
+        buttonPanel.setBackground(Color.LIGHT_GRAY);
+        Font font2 = new Font("Times New Roman", Font.BOLD, 14);       
+        JLabel introText = new JLabel("\n\nPlease select an option below:");       
+        introText.setFont(font2);
         introText.setHorizontalAlignment(SwingConstants.CENTER);
         JTextField field = new JTextField(35);
         field.setText("STATUS: Waiting for user...");
@@ -232,9 +245,12 @@ public class MainAppGUI extends JFrame {
         });
 
         this.setContentPane(mainPanel);
-        mainPanel.add(introText, BorderLayout.NORTH);
+        mainPanel.setBorder(line);
+        mainPanel.add(header, BorderLayout.NORTH);
+        mainPanel.add(introText, BorderLayout.LINE_START);
         mainPanel.add(buttonPanel, BorderLayout.CENTER);
         mainPanel.add(field, BorderLayout.SOUTH);
+        buttonPanel.setBorder(line);
         buttonPanel.add(hideText);
         buttonPanel.add(hideImage);
         buttonPanel.add(revealText);

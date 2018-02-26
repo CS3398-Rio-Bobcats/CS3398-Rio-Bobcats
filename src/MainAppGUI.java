@@ -27,6 +27,7 @@ import java.util.logging.*;
 import java.io.*;
 import java.util.logging.Formatter;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import steganographer.Steganographer;
 
 /**
  * @author Zach Sotak (zs1046)
@@ -500,16 +501,27 @@ public void newPanelDoubleImage(Container pane) {
 
         JFrame frame1 = new JFrame("Reveal text from steganography image");
         JPanel searchpanel = new JPanel();
-        JLabel searchfield = new JLabel("Enter file name of image  ");
-        JTextField imageName = new JTextField(50);
-        JButton browseButton = new JButton("Browse");
+        
+        JLabel stegField = new JLabel("Stego image:");
+        JTextField stegName = new JTextField(50);
+        JButton stegBrowse = new JButton("Browse");
+        
+        JLabel origField = new JLabel("Original image:");
+        JTextField origName = new JTextField(50);
+        JButton origBrowse = new JButton("Browse");
+        
         JButton submit = new JButton("Submit");
         
 
         frame1.setContentPane(searchpanel);
-        searchpanel.add(searchfield);
-        searchpanel.add(imageName);
-        searchpanel.add(browseButton);
+        searchpanel.add(stegField);
+        searchpanel.add(stegName);
+        searchpanel.add(stegBrowse);
+        
+        searchpanel.add(origField);
+        searchpanel.add(origName);
+        searchpanel.add(origBrowse);
+        
         searchpanel.add(submit);
         searchpanel.setVisible(true);
 
@@ -519,24 +531,49 @@ public void newPanelDoubleImage(Container pane) {
                 logger.log(Level.INFO, "User submitted a file name and text to hide");
                 Thread qThread = new Thread(){
                 public void run(){       
-                }
-           
+                
+                    File f = new File(origName.getText());
+                    File f2 = new File(stegName.getText());        
+        
+                    Steganographer steg = new Steganographer(f);
+                    String result = steg.reveal(f2, "text");
+                    
+                    JFrame frame = new JFrame();
+                    JOptionPane.showMessageDialog(frame, "Hidden text: " + result);
+                    }
                 };
                 qThread.start();
             }
         });
         
-        browseButton.addActionListener(new ActionListener() {
+        stegBrowse.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
                 logger.log(Level.INFO, "User is searching for file");
-               if(ev.getSource() == browseButton){
+               if(ev.getSource() == stegBrowse){
 	                	JButton open = new JButton();
 	            		JFileChooser fc = new JFileChooser();
 	            		fc.setCurrentDirectory(new java.io.File(System.getenv("USERPROFILE") + "\\Desktop"));
 	            		fc.setDialogTitle("Select a File");
 	            		fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 	            		if (fc.showOpenDialog(open) == JFileChooser.APPROVE_OPTION) {
-	            			imageName.setText(fc.getSelectedFile().toString());
+	            			stegName.setText(fc.getSelectedFile().toString());
+	            		}
+                           
+               }
+            }
+        });
+        
+        origBrowse.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ev) {
+                logger.log(Level.INFO, "User is searching for file");
+               if(ev.getSource() == origBrowse){
+	                	JButton open = new JButton();
+	            		JFileChooser fc = new JFileChooser();
+	            		fc.setCurrentDirectory(new java.io.File(System.getenv("USERPROFILE") + "\\Desktop"));
+	            		fc.setDialogTitle("Select a File");
+	            		fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+	            		if (fc.showOpenDialog(open) == JFileChooser.APPROVE_OPTION) {
+	            			origName.setText(fc.getSelectedFile().toString());
 	            		}
                            
                }

@@ -1,2 +1,12 @@
-25/02/2018 02:25:27.251 - [MainAppGUI.<init>] :
+25/02/2018 06:44:08.776 - [MainAppGUI.<init>] :
 	[INFO] - User has loaded main menu of GUI
+25/02/2018 06:44:10.067 - [MainAppGUI$5.actionPerformed] :
+	[INFO] - Convert image to (ppm, jpg, jpeg, png, gif)
+25/02/2018 06:44:11.341 - [MainAppGUI$20.actionPerformed] :
+	[INFO] - User is searching for file
+25/02/2018 06:44:21.293 - [MainAppGUI$1.actionPerformed] :
+	[INFO] - User pressed 'Hide text in an image'
+25/02/2018 06:44:21.311 - [MainAppGUI.hideTextInImage] :
+	[INFO] - User has entered 'Hide text in an Image'
+25/02/2018 06:44:22.727 - [MainAppGUI$9.actionPerformed] :
+	[INFO] - User is searching for file

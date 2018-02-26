@@ -24,3 +24,4 @@ ImageMagick/www/subversion.html
 *.xml
 *.properties
 *.xml
+/dist/

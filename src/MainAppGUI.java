@@ -8,6 +8,7 @@
 
 
 import ImagePreview.ImagePreview;
+//import static MainApp.scan;
 import imageconverter.ImageConverter;
 import javax.swing.*;
 import java.awt.*;
@@ -127,6 +128,7 @@ public class MainAppGUI extends JFrame {
         // Hide an image JButton
         JButton hideImage = new JButton("Hide an image in an image");
         hideImage.setHorizontalAlignment(SwingConstants.LEFT);
+        hideImage.setEnabled(false); 
 
         // Reveal text JButton
         JButton revealText = new JButton("Reveal text from stego image");
@@ -135,6 +137,7 @@ public class MainAppGUI extends JFrame {
         // Reveal an image JButton
         JButton revealImage = new JButton("Reveal an image from a stego image");
         revealImage.setHorizontalAlignment(SwingConstants.LEFT);
+        revealImage.setEnabled(false); 
 
         // Convert image JButton
         JButton convertImage = new JButton("Convert image to (ppm, jpg, jpeg, png, gif)");

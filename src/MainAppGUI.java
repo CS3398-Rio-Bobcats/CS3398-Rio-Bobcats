@@ -428,7 +428,7 @@ public void newPanelDoubleImage(Container pane) {
                if(ev.getSource() == browseButton1){
 	                	JButton open = new JButton();
 	            		JFileChooser fc = new JFileChooser();
-	            		fc.setCurrentDirectory(new java.io.File("C:/Users"));
+	            		fc.setCurrentDirectory(new java.io.File(System.getenv("USERPROFILE") + "\\Desktop"));
 	            		fc.setDialogTitle("Select a File");
 	            		fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 	            		if (fc.showOpenDialog(open) == JFileChooser.APPROVE_OPTION) {
@@ -532,7 +532,7 @@ public void newPanelDoubleImage(Container pane) {
                if(ev.getSource() == browseButton){
 	                	JButton open = new JButton();
 	            		JFileChooser fc = new JFileChooser();
-	            		fc.setCurrentDirectory(new java.io.File("C:/Users"));
+	            		fc.setCurrentDirectory(new java.io.File(System.getenv("USERPROFILE") + "\\Desktop"));
 	            		fc.setDialogTitle("Select a File");
 	            		fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 	            		if (fc.showOpenDialog(open) == JFileChooser.APPROVE_OPTION) {
@@ -591,7 +591,7 @@ public void newPanelDoubleImage(Container pane) {
                if(ev.getSource() == browseButton){
 	                	JButton open = new JButton();
 	            		JFileChooser fc = new JFileChooser();
-	            		fc.setCurrentDirectory(new java.io.File("C:/Users"));
+	            		fc.setCurrentDirectory(new java.io.File(System.getenv("USERPROFILE") + "\\Desktop"));
 	            		fc.setDialogTitle("Select a File");
 	            		fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 	            		if (fc.showOpenDialog(open) == JFileChooser.APPROVE_OPTION) {
@@ -680,7 +680,7 @@ public void newPanelDoubleImage(Container pane) {
                if(ev.getSource() == browseButton){
 	                	JButton open = new JButton();
 	            		JFileChooser fc = new JFileChooser();
-	            		fc.setCurrentDirectory(new java.io.File("C:/Users")); //might need to change for your computer
+	            		fc.setCurrentDirectory(new java.io.File(System.getenv("USERPROFILE") + "\\Desktop")); //might need to change for your computer
 	            		fc.setDialogTitle("Select a File");
 	            		fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 	            		if (fc.showOpenDialog(open) == JFileChooser.APPROVE_OPTION) {

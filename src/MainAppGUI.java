@@ -700,11 +700,13 @@ public void newPanelDoubleImage(Container pane) {
           
                         
                          MainApp ma = new MainApp();
-                         ma.convertImage(fileNameTP, typeTP, flag);
+                         String outputPath = ma.convertImage(fileNameTP, typeTP, flag);
                          field.setText("STATUS: Successfully converted file!");
                          if (flag){
                              JOptionPane.showMessageDialog(searchpanel, "Successfully converted file!");
                          }
+                        JFrame frame = new JFrame();
+                        JOptionPane.showMessageDialog(frame, "Created image: " + outputPath);
                     }
                 };
                 qThread.start();

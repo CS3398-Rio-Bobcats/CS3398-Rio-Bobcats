@@ -8,7 +8,6 @@
 
 
 import ImagePreview.ImagePreview;
-//import static MainApp.scan;
 import imageconverter.ImageConverter;
 import javax.swing.*;
 import java.awt.*;

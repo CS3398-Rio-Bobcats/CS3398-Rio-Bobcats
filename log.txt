@@ -1,10 +1,1 @@
-25/02/2018 07:16:07.506 - [MainAppGUI.<init>] :
-	[INFO] - User has loaded main menu of GUI
-25/02/2018 07:16:08.513 - [MainAppGUI$5.actionPerformed] :
-	[INFO] - Convert image to (ppm, jpg, jpeg, png, gif)
-25/02/2018 07:16:14.379 - [MainAppGUI$20.actionPerformed] :
-	[INFO] - User is searching for file
-25/02/2018 07:16:19.905 - [MainAppGUI$6.actionPerformed] :
-	[INFO] - User pressed 'Exit program'
-25/02/2018 07:16:19.906 - [MainAppGUI.closeOP] :
-	[INFO] - User has closed the program via 'Exit' in main menu, exit successful!
+

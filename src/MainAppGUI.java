@@ -473,7 +473,9 @@ public void newPanelDoubleImage(Container pane) {
        x.newPanel(frame.getContentPane());
        
         //Display the window.
+        frame.setPreferredSize(new Dimension(1000, 150));
         frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         logger.log(Level.INFO, "User has entered 'Hide text in an Image'");
        
@@ -502,7 +504,7 @@ public void newPanelDoubleImage(Container pane) {
         JFrame frame1 = new JFrame("Reveal text from steganography image");
         JPanel searchpanel = new JPanel();
         
-        JLabel stegField = new JLabel("Stego image:");
+        JLabel stegField = new JLabel("Stego image:   ");
         JTextField stegName = new JTextField(50);
         JButton stegBrowse = new JButton("Browse");
         
@@ -585,7 +587,9 @@ public void newPanelDoubleImage(Container pane) {
 
         //Display the window.
         frame1.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        frame1.setPreferredSize(new Dimension(800, 150));
         frame1.pack();
+        frame1.setLocationRelativeTo(null);
         frame1.setVisible(true);
         searchpanel.setVisible(true);
         logger.log(Level.INFO, "User opened up GUI option to reveal text from stego image");
@@ -671,9 +675,9 @@ public void newPanelDoubleImage(Container pane) {
         frame1.setContentPane(searchpanel);
         searchpanel.add(fileName);
         searchpanel.add(fileNameTF);
+        searchpanel.add(browseButton);
         searchpanel.add(typeText);
         searchpanel.add(typeField);
-        searchpanel.add(browseButton);
         searchpanel.add(submit);
         searchpanel.setVisible(true);
 
@@ -735,7 +739,9 @@ public void newPanelDoubleImage(Container pane) {
 
         //Display the window.
         frame1.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        frame1.setPreferredSize(new Dimension(900, 150));
         frame1.pack();
+        frame1.setLocationRelativeTo(null);
         frame1.setVisible(true);
         searchpanel.setVisible(true);
     }

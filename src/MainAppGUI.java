@@ -322,23 +322,25 @@ public void newPanel(Container pane) {
 	            		if (fc.showOpenDialog(open) == JFileChooser.APPROVE_OPTION) {
 	            			fileNameTF.setText(fc.getSelectedFile().toString());
                                         //System.out.println(fileNameTF.getText());
-                                        try {
-                                            ImageConverter.convert(fileNameTF.getText(), "jpg");
+                                        if (System.getProperty("os.name").contains("Windows"))
+                                        {
+                                            try {
+                                                ImageConverter.convert(fileNameTF.getText(), "jpg");
+                                            }
+                                            catch (Exception ex) {
+                                                Logger.getLogger(MainAppGUI.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
+                                            File img = new File(ImageConverter.getOutputPathFromInputPath(fileNameTF.getText(), "jpg"));
+                                            ImagePreview ip = new ImagePreview(img, 200);
+
+                                            JFrame frame = new JFrame();
+                                            //card1.add(ip);
+
+                                            frame.add(ip);
+                                            frame.setSize(200,240);
+                                            //frame.setDefaultCloseOperation(JFrame.);
+                                            frame.setVisible(true);
                                         }
-                                        catch (Exception ex) {
-                                            Logger.getLogger(MainAppGUI.class.getName()).log(Level.SEVERE, null, ex);
-                                        }
-                                        File img = new File(ImageConverter.getOutputPathFromInputPath(fileNameTF.getText(), "jpg"));
-                                        ImagePreview ip = new ImagePreview(img, 200);
-                                        
-                                        JFrame frame = new JFrame();
-                                        //card1.add(ip);
-                                        
-                                        frame.add(ip);
-                                        frame.setSize(200,240);
-                                        //frame.setDefaultCloseOperation(JFrame.);
-                                        frame.setVisible(true);
-                                        
                                         
                                         
                                         /*      //Code used for ImagePreview test

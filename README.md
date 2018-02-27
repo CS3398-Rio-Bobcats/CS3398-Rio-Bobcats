@@ -26,14 +26,14 @@ What has been done:
 
 ● Created pop-ups for the completion of work.
 
-● Functional on Windows.
+● Convert Image Functional on Windows.
 
 
 Additional features to be implemented (tentative):
 
 ● Get the last 2 functions working on the GUI.
 
-● Add functionality on OS and LINUX.
+● Add functionality to Convert Image for OS and LINUX.
 
 ● Make interface visually appealing and intuitively easy to use.
 

@@ -1,2 +1,6 @@
-25/03/2018 09:07:57.628 - [ButtonPanel.<init>] :
+26/03/2018 03:53:53.925 - [ButtonPanel.<init>] :
 	[INFO] - User has loaded main menu of GUI
+26/03/2018 03:53:56.319 - [ButtonPanel$5.actionPerformed] :
+	[INFO] - Convert image to (ppm, jpg, jpeg, png, gif)
+26/03/2018 03:53:57.309 - [ButtonActions$7.actionPerformed] :
+	[INFO] - User is searching for file

@@ -1,1 +1,2 @@
-
+25/03/2018 09:07:57.628 - [ButtonPanel.<init>] :
+	[INFO] - User has loaded main menu of GUI

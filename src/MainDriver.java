@@ -6,7 +6,7 @@
 import ButtonPanel.ButtonPanel;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
-/** 
+/** travis.yml tester
  *
  * @author Ayisha Sowkathali
  */

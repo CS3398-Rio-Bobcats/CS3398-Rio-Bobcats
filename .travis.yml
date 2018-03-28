@@ -7,7 +7,7 @@ jdk:
  branches:
     only:
        - master
-       - zachdevelopment
+       - zachDevelopment
        
        
 after_success:

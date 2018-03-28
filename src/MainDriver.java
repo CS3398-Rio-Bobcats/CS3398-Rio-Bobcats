@@ -19,7 +19,6 @@ public class MainDriver {
      */
     private static void createAndShowGUI() {
 		
-		int test;
         
         JFrame frame = new JFrame("Steganography");
 		

@@ -1,3 +1,5 @@
+package ButtonPanel;
+
 import imageconverter.ImageConverter;
 import java.io.File;
 import java.util.logging.Level;
@@ -7,11 +9,9 @@ import steganographer.Steganographer;
 public class DisplayMessages {
 
 //    private static Scanner scan = new Scanner(System.in);
-
 //    public static Scanner getScan() {
 //        return scan;
 //    }
-
 //    private static void menu() {
 //        String menu = "\nSelect an option:\n"
 //                + "---------------------\n"
@@ -23,7 +23,6 @@ public class DisplayMessages {
 //                + "6. Exit\n";
 //        System.out.println(menu);
 //    }
-
     /**
      * @param filename
      * @param format
@@ -83,7 +82,6 @@ public class DisplayMessages {
 //            Logger.getLogger(DisplayMessages.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //    }
-
 //    public static void revealText() {
 //        System.out.println("Key file name (original file): ");
 //        File f = new File(getScan().nextLine());
@@ -95,7 +93,6 @@ public class DisplayMessages {
 //        steg.reveal(f2, "text");
 //        System.out.println("\nSuccessfully revealed text from file (stego-image.ppm)!");
 //    }
-
 //    public static void revealImage() {
 //        System.out.println("Key file name (original file): ");
 //        File f = new File(getScan().nextLine());
@@ -107,7 +104,6 @@ public class DisplayMessages {
 //        System.out.println("Successfully revealed image from file (stego-image.ppm)!");
 //        System.out.println("File name is revealed-image.ppm");
 //    }
-
 //    public static String getFileExtensionFromPath(String path) {
 //        int i = path.lastIndexOf('.');
 //        if (i > 0) {
@@ -115,7 +111,6 @@ public class DisplayMessages {
 //        }
 //        return "";
 //    }
-
 //    public void runSoftware() {
 //        int choice = 0;
 //        boolean exitProgram = false;

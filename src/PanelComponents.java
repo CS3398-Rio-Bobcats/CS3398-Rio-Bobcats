@@ -1,3 +1,8 @@
+package ButtonPanel;
+
+import ButtonPanel.DisplayMessages;
+import ButtonPanel.ButtonPanel;
+import ButtonPanel.logger;
 import ImagePreview.ImagePreview;
 import imageconverter.ImageConverter;
 import java.awt.BorderLayout;
@@ -23,13 +28,12 @@ import javax.swing.JTextField;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Ayisha Sowkathali
  */
-public class PanelComponents extends ButtonActions {
-    
+public class PanelComponents {
+
     protected static String PANEL = " ";
     protected static int extraWindowWidth = 100;
 
@@ -59,13 +63,6 @@ public class PanelComponents extends ButtonActions {
      */
     public static void setExtraWindowWidth(int aExtraWindowWidth) {
         extraWindowWidth = aExtraWindowWidth;
-    }
-
-    public PanelComponents() {
-    }
-
-    public PanelComponents(String title) {
-        super(title);
     }
 
     public void newPanel(Container pane) {
@@ -103,11 +100,11 @@ public class PanelComponents extends ButtonActions {
                         String fileNameTP;
                         boolean flag = false;
                         if (fileNameTF.getText().length() == 0) {
-                            getLogger().log(Level.WARNING, "User submitted an empty field text (File Name)");
+                            logger.getLogger().log(Level.WARNING, "User submitted an empty field text (File Name)");
                         }
                         fileNameTP = fileNameTF.getText();
                         if (textToHideTF.getText().length() == 0) {
-                            getLogger().log(Level.WARNING, "User submitted an empty field (Last Name)");
+                            logger.getLogger().log(Level.WARNING, "User submitted an empty field (Last Name)");
                         }
                         textToHideTP = textToHideTF.getText();
                         DisplayMessages.hideText(fileNameTP, textToHideTP, flag);
@@ -121,7 +118,7 @@ public class PanelComponents extends ButtonActions {
         });
         browseButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
-                getLogger().log(Level.INFO, "User is searching for file");
+                logger.getLogger().log(Level.INFO, "User is searching for file");
                 if (ev.getSource() == browseButton) {
                     JButton open = new JButton();
                     JFileChooser fc = new JFileChooser();
@@ -194,11 +191,11 @@ public class PanelComponents extends ButtonActions {
                         String fileNameTP1;
                         String fileNameTP2;
                         if (imageLargeTF.getText().length() == 0) {
-                            getLogger().log(Level.WARNING, "User submitted an empty field text (File Name)");
+                            logger.getLogger().log(Level.WARNING, "User submitted an empty field text (File Name)");
                         }
                         fileNameTP1 = imageLargeTF.getText();
                         if (imageToHideTF.getText().length() == 0) {
-                            getLogger().log(Level.WARNING, "User submitted an empty field (Last Name)");
+                            logger.getLogger().log(Level.WARNING, "User submitted an empty field (Last Name)");
                         }
                         fileNameTP2 = imageToHideTF.getText();
                     }
@@ -208,7 +205,7 @@ public class PanelComponents extends ButtonActions {
         });
         browseButton1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
-                getLogger().log(Level.INFO, "User is searching for file");
+                logger.getLogger().log(Level.INFO, "User is searching for file");
                 if (ev.getSource() == browseButton1) {
                     JButton open = new JButton();
                     JFileChooser fc = new JFileChooser();
@@ -223,7 +220,7 @@ public class PanelComponents extends ButtonActions {
         });
         browseButton2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
-                getLogger().log(Level.INFO, "User is searching for file");
+                logger.getLogger().log(Level.INFO, "User is searching for file");
                 if (ev.getSource() == browseButton2) {
                     JButton open = new JButton();
                     JFileChooser fc = new JFileChooser();
@@ -239,5 +236,5 @@ public class PanelComponents extends ButtonActions {
         tabbedPane.addTab(getPANEL(), card1);
         pane.add(tabbedPane, BorderLayout.WEST);
     }
-    
+
 }

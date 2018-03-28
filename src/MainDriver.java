@@ -6,7 +6,7 @@
 import ButtonPanel.ButtonPanel;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
-/** travis.yml tester
+/** 
  *
  * @author Ayisha Sowkathali
  */
@@ -18,6 +18,8 @@ public class MainDriver {
      * event-dispatching thread.
      */
     private static void createAndShowGUI() {
+		
+		int test;
         
         JFrame frame = new JFrame("Steganography");
 		

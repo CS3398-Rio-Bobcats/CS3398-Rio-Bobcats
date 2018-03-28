@@ -1,9 +1,10 @@
+package ButtonPanel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -17,34 +18,24 @@ import javax.swing.border.LineBorder;
  * @version 1.0
  *
  */
-public class ButtonPanel extends PanelComponents  {
+public class ButtonPanel extends JPanel {
 
-
+    logger l = new logger();
+    ButtonActions bA = new ButtonActions();
 
     /**
      * Default Constructor for class ButtonPanel
      */
+    public ButtonPanel() {
+        l.initLogger();
 
-    ButtonPanel() {
-    }
-
-    /**
-     * MainAppGUI is designed to set the information in each frame of the
-     * program, such as the title and the buttons that are within the program.
-     *
-     * @param title receives the name to set the PanelComponents as.
-     */
-    ButtonPanel(String title) {
-        // Setting title information
-        super(title);
-        initLogger();
-
-        // Creating a new panel to house the buttons within
-        JPanel mainPanel = new JPanel(new BorderLayout());
-
+//        Creating a new panel to house the buttons within
+//        JPanel mainPanel = new JPanel(new BorderLayout());
+        setLayout(new BorderLayout());
         Border line = new LineBorder(Color.black, 1);
         Font font1 = new Font("Times New Roman", Font.BOLD, 32);
         JLabel header = new JLabel("STEGANOGRAPHY", JLabel.CENTER);
+
         // add set properties and add panel to JFrame
         header.setOpaque(true);
         header.setForeground(Color.black);
@@ -70,7 +61,7 @@ public class ButtonPanel extends PanelComponents  {
         // Hide an image JButton
         JButton hideImage = new JButton("Hide an image in an image");
         hideImage.setHorizontalAlignment(SwingConstants.LEFT);
-        //hideImage.setEnabled(false);
+        hideImage.setEnabled(false);
 
         // Reveal text JButton
         JButton revealText = new JButton("Reveal text from stego image");
@@ -79,7 +70,7 @@ public class ButtonPanel extends PanelComponents  {
         // Reveal an image JButton
         JButton revealImage = new JButton("Reveal an image from a stego image");
         revealImage.setHorizontalAlignment(SwingConstants.LEFT);
-        //revealImage.setEnabled(false);
+        revealImage.setEnabled(false);
 
         // Convert image JButton
         JButton convertImage = new JButton("Convert image to (ppm, jpg, jpeg, png, gif)");
@@ -90,11 +81,11 @@ public class ButtonPanel extends PanelComponents  {
 
         hideText.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
-                getLogger().log(Level.INFO, "User pressed 'Hide text in an image'");
+                logger.getLogger().log(Level.INFO, "User pressed 'Hide text in an image'");
                 field.setText("STATUS: selecting image...");
                 Thread qThread = new Thread() {
                     public void run() {
-                        hideTextInImage();
+                        bA.hideTextInImage();
                     }
                 };
                 qThread.start();
@@ -103,11 +94,11 @@ public class ButtonPanel extends PanelComponents  {
 
         hideImage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
-                getLogger().log(Level.INFO, "Hide an image in an image");
+                logger.getLogger().log(Level.INFO, "Hide an image in an image");
                 field.setText("STATUS: selecting images...");
                 Thread qThread = new Thread() {
                     public void run() {
-                        hideImageInImage();
+                        bA.hideImageInImage();
                     }
                 };
                 qThread.start();
@@ -116,11 +107,11 @@ public class ButtonPanel extends PanelComponents  {
 
         revealText.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
-                getLogger().log(Level.INFO, "Reveal text from stego image");
+                logger.getLogger().log(Level.INFO, "Reveal text from stego image");
                 field.setText("STATUS: Revealing text from image...");
                 Thread qThread = new Thread() {
                     public void run() {
-                        revealTextFromImage();
+                        bA.revealTextFromImage();
                     }
                 };
                 qThread.start();
@@ -129,11 +120,11 @@ public class ButtonPanel extends PanelComponents  {
 
         revealImage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
-                getLogger().log(Level.INFO, "Reveal an image from a stego image");
+                logger.getLogger().log(Level.INFO, "Reveal an image from a stego image");
                 field.setText("STATUS: Revaling image from image...");
                 Thread qThread = new Thread() {
                     public void run() {
-                        revealImageFromImage();
+                        bA.revealImageFromImage();
                     }
                 };
                 qThread.start();
@@ -142,11 +133,11 @@ public class ButtonPanel extends PanelComponents  {
 
         convertImage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
-                getLogger().log(Level.INFO, "Convert image to (ppm, jpg, jpeg, png, gif)");
+                logger.getLogger().log(Level.INFO, "Convert image to (ppm, jpg, jpeg, png, gif)");
                 field.setText("STATUS: Converting image...");
                 Thread qThread = new Thread() {
                     public void run() {
-                        convertImage();
+                        bA.convertImage();
                     }
                 };
                 qThread.start();
@@ -155,13 +146,13 @@ public class ButtonPanel extends PanelComponents  {
 
         exit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
-                getLogger().log(Level.INFO, "User pressed 'Exit program'");
+                logger.getLogger().log(Level.INFO, "User pressed 'Exit program'");
                 Thread qThread = new Thread() {
                     public void run() {
                         try {
-                            closeOP();
+                            bA.closeOP();
                         } catch (Exception e) {
-                            getLogger().log(Level.SEVERE, e.toString());
+                            logger.getLogger().log(Level.SEVERE, e.toString());
                             System.exit(0);
                         }
                     }
@@ -171,12 +162,12 @@ public class ButtonPanel extends PanelComponents  {
             }
         });
 
-        this.setContentPane(mainPanel);
-        mainPanel.setBorder(line);
-        mainPanel.add(header, BorderLayout.NORTH);
-        mainPanel.add(introText, BorderLayout.LINE_START);
-        mainPanel.add(buttonPanel, BorderLayout.CENTER);
-        mainPanel.add(field, BorderLayout.SOUTH);
+        setBorder(line);
+        add(header, BorderLayout.NORTH);
+        add(introText, BorderLayout.LINE_START);
+        add(buttonPanel, BorderLayout.CENTER);
+        add(field, BorderLayout.SOUTH);
+
         buttonPanel.setBorder(line);
         buttonPanel.add(hideText);
         buttonPanel.add(hideImage);
@@ -185,14 +176,7 @@ public class ButtonPanel extends PanelComponents  {
         buttonPanel.add(convertImage);
         buttonPanel.add(exit);
 
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        this.pack();
-        this.setLocationRelativeTo(null); // Centers Program
-        this.setVisible(true);
-
-        logger.log(Level.INFO, "User has loaded main menu of GUI");
+        logger.getLogger().log(Level.INFO, "User has loaded main menu of GUI");
     }
-
-
 
 }

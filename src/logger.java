@@ -1,18 +1,16 @@
-package ButtonPanel;
-
-import ButtonPanel.ButtonPanel;
 import java.io.IOException;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 /**
  *
  * @author Ayisha Sowkathali
  */
-
-public class logger {   
-    public static Logger logger = Logger.getLogger(ButtonPanel.class.getName());
+public class logger extends JFrame {
+//public class logger {   
+    protected static Logger logger = Logger.getLogger(ButtonPanel.class.getName());
     protected static FileHandler fh;
 
     /**
@@ -43,6 +41,13 @@ public class logger {
         fh = aFh;
     }
 
+    public logger() {
+    }
+
+    public logger(String title) {
+        super(title);
+    }
+
     /**
      * initLogger() method initializes the Logger environment for the class upon
      * call
@@ -57,5 +62,6 @@ public class logger {
         } catch (IOException e) {
             getLogger().log(Level.SEVERE, "FileHandler threw IOException", e);
         }
-    }   
+    }
+    
 }

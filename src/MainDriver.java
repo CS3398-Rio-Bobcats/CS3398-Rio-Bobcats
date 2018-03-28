@@ -20,6 +20,7 @@ public class MainDriver {
     private static void createAndShowGUI() {
         
         JFrame frame = new JFrame("Steganography");
+		
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         frame.setBounds(300, 300, 700, 400); 

@@ -1,4 +1,10 @@
+package ButtonPanel;
 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,51 +20,44 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import steganographer.Steganographer;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
  * @author Ayisha Sowkathali
  */
-public class ButtonActions extends logger {
+public class ButtonActions {
 
-    public ButtonActions() {
-    }
+    logger l = new logger();
 
-    public ButtonActions(String title) {
-        super(title);
-    }
+    // Create content pane
+    PanelComponents pc = new PanelComponents();
 
     // Needs work
     public void hideTextInImage() {
         JFrame frame = new JFrame("Hide text in an Image");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        //Create and set up the content pane.
-        ButtonPanel x = new ButtonPanel();
-        x.newPanel(frame.getContentPane());
+
+        pc.newPanel(frame.getContentPane());
 
         //Display the window.
         frame.setPreferredSize(new Dimension(1000, 150));
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        getLogger().log(Level.INFO, "User has entered 'Hide text in an Image'");
+        logger.getLogger().log(Level.INFO, "User has entered 'Hide text in an Image'");
     }
 
     //Needs work
     public void hideImageInImage() {
         JFrame frame1 = new JFrame("Hide an image in another image");
         frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        //Create and set up the content pane.
-        ButtonPanel x = new ButtonPanel();
-        x.newPanelDoubleImage(frame1.getContentPane());
+
+        //Set up the content pane.
+        pc.newPanelDoubleImage(frame1.getContentPane());
+
         //Display the window.
         frame1.pack();
         frame1.setVisible(true);
-        getLogger().log(Level.INFO, "User opened up GUI option to hide an image in another image");
+        logger.getLogger().log(Level.INFO, "User opened up GUI option to hide an image in another image");
     }
 
     // Needs work
@@ -83,7 +82,7 @@ public class ButtonActions extends logger {
         searchpanel.setVisible(true);
         submit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
-                getLogger().log(Level.INFO, "User submitted a file name and text to hide");
+                logger.getLogger().log(Level.INFO, "User submitted a file name and text to hide");
                 Thread qThread = new Thread() {
                     public void run() {
                         File f = new File(origName.getText());
@@ -99,7 +98,7 @@ public class ButtonActions extends logger {
         });
         stegBrowse.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
-                getLogger().log(Level.INFO, "User is searching for file");
+                logger.getLogger().log(Level.INFO, "User is searching for file");
                 if (ev.getSource() == stegBrowse) {
                     JButton open = new JButton();
                     JFileChooser fc = new JFileChooser();
@@ -114,7 +113,7 @@ public class ButtonActions extends logger {
         });
         origBrowse.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
-                getLogger().log(Level.INFO, "User is searching for file");
+                logger.getLogger().log(Level.INFO, "User is searching for file");
                 if (ev.getSource() == origBrowse) {
                     JButton open = new JButton();
                     JFileChooser fc = new JFileChooser();
@@ -134,7 +133,7 @@ public class ButtonActions extends logger {
         frame1.setLocationRelativeTo(null);
         frame1.setVisible(true);
         searchpanel.setVisible(true);
-        getLogger().log(Level.INFO, "User opened up GUI option to reveal text from stego image");
+        logger.getLogger().log(Level.INFO, "User opened up GUI option to reveal text from stego image");
     }
 
     //Needs work
@@ -153,7 +152,7 @@ public class ButtonActions extends logger {
         searchpanel.setVisible(true);
         submit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
-                getLogger().log(Level.INFO, "User submitted a file name and text to hide");
+                logger.getLogger().log(Level.INFO, "User submitted a file name and text to hide");
                 Thread qThread = new Thread() {
                     public void run() {
                     }
@@ -163,7 +162,7 @@ public class ButtonActions extends logger {
         });
         browseButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
-                getLogger().log(Level.INFO, "User is searching for file");
+                logger.getLogger().log(Level.INFO, "User is searching for file");
                 if (ev.getSource() == browseButton) {
                     JButton open = new JButton();
                     JFileChooser fc = new JFileChooser();
@@ -181,7 +180,7 @@ public class ButtonActions extends logger {
         frame1.pack();
         frame1.setVisible(true);
         searchpanel.setVisible(true);
-        getLogger().log(Level.INFO, "User opened up GUI option reveal an image from stego image");
+        logger.getLogger().log(Level.INFO, "User opened up GUI option reveal an image from stego image");
     }
 
     //should be working
@@ -214,11 +213,11 @@ public class ButtonActions extends logger {
                         String typeTP = null;
                         boolean flag = false;
                         if (fileNameTF.getText().length() == 0) {
-                            getLogger().log(Level.WARNING, "User submitted an empty field text (File Name)");
+                            logger.getLogger().log(Level.WARNING, "User submitted an empty field text (File Name)");
                         }
                         fileNameTP = fileNameTF.getText();
                         if (typeField.getText().length() == 0) {
-                            getLogger().log(Level.WARNING, "User submitted an empty field text (Type Name)");
+                            logger.getLogger().log(Level.WARNING, "User submitted an empty field text (Type Name)");
                         }
                         typeTP = typeField.getText();
 
@@ -236,7 +235,7 @@ public class ButtonActions extends logger {
         });
         browseButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
-                getLogger().log(Level.INFO, "User is searching for file");
+                logger.getLogger().log(Level.INFO, "User is searching for file");
                 if (ev.getSource() == browseButton) {
                     JButton open = new JButton();
                     JFileChooser fc = new JFileChooser();
@@ -271,12 +270,12 @@ public class ButtonActions extends logger {
     public int closeOP() throws Exception {
         try {
             //db.writeDatabase();
-            getLogger().log(Level.INFO, "User has closed the program via 'Exit' in main menu, exit successful!");
+            logger.getLogger().log(Level.INFO, "User has closed the program via 'Exit' in main menu, exit successful!");
             System.exit(0);
             return JFrame.EXIT_ON_CLOSE;
         } catch (Exception e) {
             System.out.println("PROGRAM SHOULD NEVER REACH THIS POINT UNDERNEATH ANY CIRCUMSTANCE");
-            getLogger().log(Level.SEVERE, e.toString());
+            logger.getLogger().log(Level.SEVERE, e.toString());
         }
         return JFrame.EXIT_ON_CLOSE;
     }

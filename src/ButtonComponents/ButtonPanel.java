@@ -1,4 +1,4 @@
-package ButtonPanel;
+package ButtonComponents;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -38,20 +38,22 @@ public class ButtonPanel extends JPanel {
 
         // add set properties and add panel to JFrame
         header.setOpaque(true);
-        header.setForeground(Color.black);
-        header.setBackground(Color.white);
+        header.setForeground(Color.white);
+        header.setBackground(Color.black);
         header.setBorder(line);
         header.setFont(font1);
 
         JPanel buttonPanel = new JPanel(new GridLayout(6, 0));
         buttonPanel.setBackground(Color.LIGHT_GRAY);
+        
         Font font2 = new Font("Times New Roman", Font.BOLD, 14);
         JLabel introText = new JLabel("\n\nPlease select an option below:");
         introText.setFont(font2);
         introText.setHorizontalAlignment(SwingConstants.CENTER);
-        JTextField field = new JTextField(35);
-        field.setText("STATUS: Waiting for user...");
-        field.setEditable(false);
+        
+//        JTextField field = new JTextField(35);
+//        field.setText("STATUS: Waiting for user...");
+//        field.setEditable(false);
 
         // Hide text JButton
         JButton hideText = new JButton("Hide text in an image");
@@ -82,7 +84,7 @@ public class ButtonPanel extends JPanel {
         hideText.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
                 logger.getLogger().log(Level.INFO, "User pressed 'Hide text in an image'");
-                field.setText("STATUS: selecting image...");
+//                field.setText("STATUS: selecting image...");
                 Thread qThread = new Thread() {
                     public void run() {
                         bA.hideTextInImage();
@@ -95,7 +97,7 @@ public class ButtonPanel extends JPanel {
         hideImage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
                 logger.getLogger().log(Level.INFO, "Hide an image in an image");
-                field.setText("STATUS: selecting images...");
+//                field.setText("STATUS: selecting images...");
                 Thread qThread = new Thread() {
                     public void run() {
                         bA.hideImageInImage();
@@ -108,7 +110,7 @@ public class ButtonPanel extends JPanel {
         revealText.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
                 logger.getLogger().log(Level.INFO, "Reveal text from stego image");
-                field.setText("STATUS: Revealing text from image...");
+//                field.setText("STATUS: Revealing text from image...");
                 Thread qThread = new Thread() {
                     public void run() {
                         bA.revealTextFromImage();
@@ -121,7 +123,7 @@ public class ButtonPanel extends JPanel {
         revealImage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
                 logger.getLogger().log(Level.INFO, "Reveal an image from a stego image");
-                field.setText("STATUS: Revaling image from image...");
+//                field.setText("STATUS: Revaling image from image...");
                 Thread qThread = new Thread() {
                     public void run() {
                         bA.revealImageFromImage();
@@ -134,7 +136,7 @@ public class ButtonPanel extends JPanel {
         convertImage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
                 logger.getLogger().log(Level.INFO, "Convert image to (ppm, jpg, jpeg, png, gif)");
-                field.setText("STATUS: Converting image...");
+//                field.setText("STATUS: Converting image...");
                 Thread qThread = new Thread() {
                     public void run() {
                         bA.convertImage();
@@ -146,19 +148,19 @@ public class ButtonPanel extends JPanel {
 
         exit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
-                logger.getLogger().log(Level.INFO, "User pressed 'Exit program'");
+//                logger.getLogger().log(Level.INFO, "User pressed 'Exit program'");
                 Thread qThread = new Thread() {
                     public void run() {
                         try {
                             bA.closeOP();
                         } catch (Exception e) {
-                            logger.getLogger().log(Level.SEVERE, e.toString());
+//                            logger.getLogger().log(Level.SEVERE, e.toString());
                             System.exit(0);
                         }
                     }
                 };
                 qThread.start();
-                field.setText("STATUS: Bye!");
+//                field.setText("STATUS: Bye!");
             }
         });
 
@@ -166,7 +168,7 @@ public class ButtonPanel extends JPanel {
         add(header, BorderLayout.NORTH);
         add(introText, BorderLayout.LINE_START);
         add(buttonPanel, BorderLayout.CENTER);
-        add(field, BorderLayout.SOUTH);
+//        add(field, BorderLayout.SOUTH);
 
         buttonPanel.setBorder(line);
         buttonPanel.add(hideText);

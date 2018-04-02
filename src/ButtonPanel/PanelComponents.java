@@ -127,6 +127,21 @@ public class PanelComponents {
                     fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
                     if (fc.showOpenDialog(open) == JFileChooser.APPROVE_OPTION) {
                         fileNameTF.setText(fc.getSelectedFile().toString());
+                        
+                        String ext = ImageConverter.getFileExtensionFromPath(fileNameTF.getText());
+                        
+                        switch (ext){
+                            case "jpeg":
+                            case "jpg":
+                            case "gif":
+                            case "png":
+                            case "ppm": break;
+                            default:
+                                    fileNameTF.setText("");
+                                    JFrame frame = new JFrame();
+                                    JOptionPane.showMessageDialog(frame, "Please select a valid image file.");
+                                    return;
+                        }
                         //System.out.println(fileNameTF.getText());
                         try {
                             ImageConverter.convert(fileNameTF.getText(), "jpg");

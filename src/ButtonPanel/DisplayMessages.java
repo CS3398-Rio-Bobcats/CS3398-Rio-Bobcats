@@ -56,6 +56,22 @@ public class DisplayMessages {
         System.out.println("Text to hide: ");
         String text = scan.nextLine();
          */
+        String ext = ImageConverter.getFileExtensionFromPath(foo);
+        System.out.println(foo + " " + ext);
+        switch (ext){
+                            case "jpeg":
+                            case "jpg":
+                            case "gif":
+                            case "png":
+                                        try {
+                                            ImageConverter.convert(foo, "ppm");
+                                            foo = ImageConverter.getOutputPathFromInputPath(foo, "ppm");
+                                        } catch (Exception ex) {
+                                          Logger.getLogger(ButtonPanel.class.getName()).log(Level.SEVERE, null, ex);
+                                        }
+                            default:    break;
+        }
+        
         File f = new File(foo);
         Steganographer steg = new Steganographer(f);
         boolean hidden = steg.hide(text.getBytes(), "text");

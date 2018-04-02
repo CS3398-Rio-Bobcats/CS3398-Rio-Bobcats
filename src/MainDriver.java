@@ -3,8 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import ButtonPanel.ButtonPanel;
-import javax.swing.JFrame;
+//import ButtonComponents.ButtonPanel;
 import javax.swing.SwingUtilities;
 /**
  *
@@ -17,28 +16,40 @@ public class MainDriver {
      * this method should be invoked from the
      * event-dispatching thread.
      */
-    private static void createAndShowGUI() {
-        
-        JFrame frame = new JFrame("Steganography");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        frame.setBounds(300, 300, 700, 400); 
-        
-        frame.setContentPane(new ButtonPanel());
-        
-        frame.setVisible(true);
-    }
+    
+//    private static void createAndShowGUI() {
+//        
+//        JFrame frame = new JFrame("Steganography");
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//       
+//        frame.setContentPane(new ButtonPanel());
+//        frame.setSize(800, 600);
+//        frame.setResizable(false);
+//        frame.setVisible(true);
+//    }
     /**
      * main() is the initializer and executes the GUI on an EDT as opposed to
      * the main thread
      *
      * @param args
      */
-    public static void main(String[] args) {
+//    public static void main(String[] args) {
+//        SwingUtilities.invokeLater(() -> {
+////            ButtonPanel execute = new ButtonPanel("Steganography");
+////            execute.setVisible(true);
+//            createAndShowGUI();
+//        });
+//    }
+    
+    /**
+     * main() is the initializer and executes the GUI on an EDT as opposed to
+     * the main thread
+     *
+     * @param args
+     */
+    public static void main(String args[]) {       
         SwingUtilities.invokeLater(() -> {
-//            ButtonPanel execute = new ButtonPanel("Steganography");
-//            execute.setVisible(true);
-            createAndShowGUI();
+            new guiComponents().setVisible(true);
         });
     }
 }

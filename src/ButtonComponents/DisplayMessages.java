@@ -1,4 +1,4 @@
-package ButtonPanel;
+package ButtonComponents;
 
 import imageconverter.ImageConverter;
 import java.io.File;

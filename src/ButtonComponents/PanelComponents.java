@@ -1,8 +1,8 @@
-package ButtonPanel;
+package ButtonComponents;
 
-import ButtonPanel.DisplayMessages;
-import ButtonPanel.ButtonPanel;
-import ButtonPanel.logger;
+import ButtonComponents.DisplayMessages;
+import ButtonComponents.ButtonPanel;
+import ButtonComponents.logger;
 import ImagePreview.ImagePreview;
 import imageconverter.ImageConverter;
 import java.awt.BorderLayout;

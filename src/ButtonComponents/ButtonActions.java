@@ -1,4 +1,4 @@
-package ButtonPanel;
+package ButtonComponents;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -82,7 +82,7 @@ public class ButtonActions {
         searchpanel.setVisible(true);
         submit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
-                logger.getLogger().log(Level.INFO, "User submitted a file name and text to hide");
+//                logger.getLogger().log(Level.INFO, "User submitted a file name and text to hide");
                 Thread qThread = new Thread() {
                     public void run() {
                         File f = new File(origName.getText());
@@ -98,7 +98,7 @@ public class ButtonActions {
         });
         stegBrowse.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
-                logger.getLogger().log(Level.INFO, "User is searching for file");
+//                logger.getLogger().log(Level.INFO, "User is searching for file");
                 if (ev.getSource() == stegBrowse) {
                     JButton open = new JButton();
                     JFileChooser fc = new JFileChooser();
@@ -113,7 +113,7 @@ public class ButtonActions {
         });
         origBrowse.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
-                logger.getLogger().log(Level.INFO, "User is searching for file");
+//                logger.getLogger().log(Level.INFO, "User is searching for file");
                 if (ev.getSource() == origBrowse) {
                     JButton open = new JButton();
                     JFileChooser fc = new JFileChooser();
@@ -206,6 +206,7 @@ public class ButtonActions {
         searchpanel.setVisible(true);
         submit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                JFrame frame = new JFrame();
                 Thread qThread;
                 qThread = new Thread() {
                     public void run() {
@@ -213,20 +214,19 @@ public class ButtonActions {
                         String typeTP = null;
                         boolean flag = false;
                         if (fileNameTF.getText().length() == 0) {
-                            logger.getLogger().log(Level.WARNING, "User submitted an empty field text (File Name)");
+//                            logger.getLogger().log(Level.WARNING, "User submitted an empty field text (File Name)");
                         }
                         fileNameTP = fileNameTF.getText();
                         if (typeField.getText().length() == 0) {
-                            logger.getLogger().log(Level.WARNING, "User submitted an empty field text (Type Name)");
+//                            logger.getLogger().log(Level.WARNING, "User submitted an empty field text (Type Name)");
                         }
                         typeTP = typeField.getText();
 
                         String outputPath = DisplayMessages.convertImage(fileNameTP, typeTP, flag);
                         field.setText("STATUS: Successfully converted file!");
                         if (flag) {
-                            JOptionPane.showMessageDialog(searchpanel, "Successfully converted file!");
+                            JOptionPane.showMessageDialog(frame, "Successfully converted file!");
                         }
-                        JFrame frame = new JFrame();
                         JOptionPane.showMessageDialog(frame, "Created image: " + outputPath);
                     }
                 };

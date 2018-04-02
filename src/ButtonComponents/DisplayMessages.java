@@ -1,4 +1,4 @@
-package ButtonPanel;
+package ButtonComponents;
 
 import imageconverter.ImageConverter;
 import java.io.File;
@@ -143,4 +143,8 @@ public class DisplayMessages {
 //            }
 //        } while (!exitProgram);
 //    }
+
+    public static void hideImage(String fileChosen1, String fileChosen2, boolean flag) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

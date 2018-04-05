@@ -1,13 +1,1 @@
 language: java
-
-jdk:
-
-    - oraclejdk8
-    
-# whitelist
-branches:
-    only:
-        - sifaDevelopment  
-       
-after_success:
-- mvn clean test jacoco:report coveralls:report

@@ -9,9 +9,14 @@ import ImagePreview.ImagePreview;
 import imageconverter.ImageConverter;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.dnd.DnDConstants;
+import java.awt.dnd.DropTarget;
+import java.awt.dnd.DropTargetDropEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.List;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -66,6 +71,7 @@ public class hideText extends JPanel {
 
         chIooseImgLbl.setFont(new Font("Georgia", 0, 18)); // NOI18N
         chIooseImgLbl.setText("Choose Image (.ppm)");
+        
       // Drag and Drop Image
 	chosenImage.setDropTarget(new DropTarget() {
                     public synchronized void drop(DropTargetDropEvent evt) {

@@ -8,9 +8,14 @@ package ButtonPanel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.dnd.DnDConstants;
+import java.awt.dnd.DropTarget;
+import java.awt.dnd.DropTargetDropEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.List;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -64,7 +69,7 @@ public class revealText extends javax.swing.JPanel {
 
         stgFld.setMinimumSize(new Dimension(50, 20));
         stgFld.setSize(new Dimension(50, 20));
-// Drag and Drop Image        
+        // Drag and Drop Image        
         stgFld.setDropTarget(new DropTarget() {
                     public synchronized void drop(DropTargetDropEvent evt) {
             try {

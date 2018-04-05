@@ -64,9 +64,52 @@ public class revealText extends javax.swing.JPanel {
 
         stgFld.setMinimumSize(new Dimension(50, 20));
         stgFld.setSize(new Dimension(50, 20));
+// Drag and Drop Image        
+        stgFld.setDropTarget(new DropTarget() {
+                    public synchronized void drop(DropTargetDropEvent evt) {
+            try {
+                evt.acceptDrop(DnDConstants.ACTION_COPY);
+                List<File> droppedFiles = (List<File>) evt
+                        .getTransferable().getTransferData(
+                                DataFlavor.javaFileListFlavor);
+                for (File file : droppedFiles) {
+                    /*
+                     * NOTE:
+                     *  When I change this to a println,
+                     *  it prints the correct path
+                     */
+                    stgFld.setText(file.getAbsolutePath());
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        });
 
         orgLbl.setFont(new Font("Georgia", 0, 18)); 
         orgLbl.setText("Choose Original Image");
+// Drag and Drop Image 
+        orgFld.setDropTarget(new DropTarget() {
+                    public synchronized void drop(DropTargetDropEvent evt) {
+            try {
+                evt.acceptDrop(DnDConstants.ACTION_COPY);
+                List<File> droppedFiles = (List<File>) evt
+                        .getTransferable().getTransferData(
+                                DataFlavor.javaFileListFlavor);
+                for (File file : droppedFiles) {
+                    /*
+                     * NOTE:
+                     *  When I change this to a println,
+                     *  it prints the correct path
+                     */
+                    orgFld.setText(file.getAbsolutePath());
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        });
+
 
         submitBtn.setFont(new Font("Verdana", 1, 18)); 
         submitBtn.setText("Submit");

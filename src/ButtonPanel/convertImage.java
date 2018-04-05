@@ -58,6 +58,28 @@ public class convertImage extends JPanel {
 
         chooseImgLbl.setFont(new Font("Georgia", 0, 18)); 
         chooseImgLbl.setText("Choose Image ");
+     //Drag and Drop Image
+        imgChosenFld.setDropTarget(new DropTarget() {
+                    public synchronized void drop(DropTargetDropEvent evt) {
+            try {
+                evt.acceptDrop(DnDConstants.ACTION_COPY);
+                List<File> droppedFiles = (List<File>) evt
+                        .getTransferable().getTransferData(
+                                DataFlavor.javaFileListFlavor);
+                for (File file : droppedFiles) {
+                    /*
+                     * NOTE:
+                     *  When I change this to a println,
+                     *  it prints the correct path
+                     */
+                    imgChosenFld.setText(file.getAbsolutePath());
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        });
+
 
         entFrmtLbl.setFont(new Font("Georgia", 0, 18)); 
         entFrmtLbl.setText("Enter Image format to convert (ppm, jpg, jpeg, png, gif)");

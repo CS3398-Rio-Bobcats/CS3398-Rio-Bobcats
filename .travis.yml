@@ -7,7 +7,7 @@ jdk:
 # whitelist
 branches:
     only:
-        - sifaDevelopment  
+        - asrDevelopment  
        
 after_success:
 - mvn clean test jacoco:report coveralls:report

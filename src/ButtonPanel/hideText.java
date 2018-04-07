@@ -29,8 +29,10 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 
 /**
+ * This class is responsible for the
+ * hiding text in an image function of this application
  *
- * @author Ayisha Sowkathali
+ * @author Ayisha Sowkathali Zach Sotak
  */
 public class hideText extends JPanel {
                         
@@ -180,6 +182,12 @@ public class hideText extends JPanel {
         );
     }// </editor-fold>                        
 
+    /**
+     * This is the action taken when the browse button is pushed
+     * and the filechooser will make a popup window of your files
+     * and allow you to select a file.
+     * @param evt
+     */
     private void browseActionPerformed(java.awt.event.ActionEvent evt) {                                       
 
 //      logger.getLogger().log(Level.INFO, "User is searching for file");
@@ -217,8 +225,14 @@ public class hideText extends JPanel {
                  */
             }
         }
-    }                                      
+    }
 
+    /**
+     * This is the action taken when the submit button is pushed
+     * and the file chosen and text to hide will be handled by
+     * the DisplayMessages.hideText function.
+     * @param evt
+     */
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {                                       
         // TODO add your handling code here:
         Thread qThread;

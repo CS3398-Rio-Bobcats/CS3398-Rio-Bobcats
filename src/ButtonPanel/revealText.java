@@ -29,7 +29,8 @@ import javax.swing.border.SoftBevelBorder;
 import steganographer.Steganographer;
 
 /**
- *
+ * This class is responsible for the
+ * revealing text from an image function of this application
  * @author Ayisha Sowkathali
  */
 public class revealText extends javax.swing.JPanel {
@@ -215,8 +216,14 @@ public class revealText extends javax.swing.JPanel {
                         GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
         );
-    }                                                            
+    }
 
+    /**
+     * This is the action taken when the submit button is pushed
+     * and the two files chosen will be handled by steg.reveal
+     * and display the hidden message
+     * @param evt
+     */
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
 //        logger.getLogger().log(Level.INFO, "User submitted a file name and text to hide");
         Thread qThread = new Thread() {
@@ -230,8 +237,14 @@ public class revealText extends javax.swing.JPanel {
             }
         };
         qThread.start();
-    }                                         
+    }
 
+    /**
+     * This is the action taken when the browse button is pushed
+     * and the filechooser will make a popup window of your files
+     * and allow you to select a file.
+     * @param evt
+     */
     private void stegBrsBtnActionPerformed(java.awt.event.ActionEvent evt) {                                           
 //        logger.getLogger().log(Level.INFO, "User is searching for file");
         if (evt.getSource() == stegBrsBtn) {
@@ -244,8 +257,14 @@ public class revealText extends javax.swing.JPanel {
                 stgFld.setText(fc.getSelectedFile().toString());
             }
         }
-    }                                          
+    }
 
+    /**
+     * This is the action taken when the browse button is pushed
+     * and the filechooser will make a popup window of your files
+     * and allow you to select a file.
+     * @param evt
+     */
     private void orgBrsBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
 //        logger.getLogger().log(Level.INFO, "User is searching for file");
         if (evt.getSource() == orgBrsBtn) {

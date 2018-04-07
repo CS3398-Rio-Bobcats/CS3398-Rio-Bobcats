@@ -1,10 +1,16 @@
 package ButtonComponents;
 
+/**
+ * @author Zach Sotak
+ *
+ */
 import imageconverter.ImageConverter;
 import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import steganographer.Steganographer;
+
+
 
 public class DisplayMessages {
 
@@ -24,10 +30,13 @@ public class DisplayMessages {
 //        System.out.println(menu);
 //    }
     /**
-     * @param filename
-     * @param format
-     * @param flag
-     * @return the scan
+     * This fucntion convertImage is will recieve the filename and the format
+     * to be converted to and will send those variables to the
+     * ImageConverter and convert the image to the desired file.
+     * @param filename this is the filename for the image
+     * @param format this is the desired format to be converted to
+     * @param flag for if the converter worked or not
+     * @return returns blank string //may need to change to void
      */
     public static String convertImage(String filename, String format, boolean flag) {
         try {
@@ -47,16 +56,25 @@ public class DisplayMessages {
         return "";
     }
 
-    //trying to pass variables entered from GUI to funtion
-    //Need to figure out how to get messages to GUI
-    public static void hideText(String foo, String text, boolean flag) {
+
+    /**
+     * This fucntion hideText is will recieve the filename and the text
+     * to be hidden in the image. We load the file, instantiate the
+     * stegonagher with the image and call the hide function
+     * with the text to hide the text in the image.
+     * The result will be sent to the file stego-image.ppm
+     * @param filename this is the filename for the image
+     * @param text this is the desired text to be hidden
+     * @param flag for if the message hiding worked or not
+     */
+    public static void hideText(String fileName, String text, boolean flag) {
         /*
         System.out.println("File name to hide the text: ");
         File f = new File(scan.nextLine());
         System.out.println("Text to hide: ");
         String text = scan.nextLine();
          */
-        File f = new File(foo);
+        File f = new File(fileName);
         Steganographer steg = new Steganographer(f);
         boolean hidden = steg.hide(text.getBytes(), "text");
         flag = hidden;

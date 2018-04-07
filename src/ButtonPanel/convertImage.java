@@ -168,6 +168,12 @@ public class convertImage extends JPanel {
         );
     }
 
+    /**
+     * This is the action taken when the browse button is pushed
+     * and the filechooser will make a popup window of your files
+     * and allow you to select a file.
+     * @param evt
+     */
     private void imgBrsBtnActionPerformed(java.awt.event.ActionEvent evt) {
 //        logger.getLogger().log(Level.INFO, "User is searching for file");
         if (evt.getSource() == imgBrsBtn) {
@@ -182,6 +188,12 @@ public class convertImage extends JPanel {
         }
     }
 
+    /**
+     * This is the action taken when the submit button is pushed
+     * and the file chosen will be handled by DisplayMessages.convertImage
+     * and will convert image and output a message of the filename.
+     * @param evt
+     */
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {
         JFrame frame = new JFrame();
         Thread qThread;

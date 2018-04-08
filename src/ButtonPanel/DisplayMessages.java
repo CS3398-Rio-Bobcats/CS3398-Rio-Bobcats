@@ -57,7 +57,6 @@ public class DisplayMessages {
         String text = scan.nextLine();
          */
         String ext = ImageConverter.getFileExtensionFromPath(foo);
-        System.out.println(foo + " " + ext);
         switch (ext){
                             case "jpeg":
                             case "jpg":

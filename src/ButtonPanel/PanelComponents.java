@@ -108,8 +108,15 @@ public class PanelComponents {
                         }
                         textToHideTP = textToHideTF.getText();
                         DisplayMessages.hideText(fileNameTP, textToHideTP, flag);
+                        try {
+                            String outPPM = fileNameTP.substring(0, fileNameTP.lastIndexOf(File.separator)) + "\\stego-image.ppm";
+                            ImageConverter.convert(outPPM, "jpg");
+                        } catch (Exception ex) {
+                          Logger.getLogger(ButtonPanel.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                         if (!flag) {
-                            JOptionPane.showMessageDialog(tabbedPane, "Successfully hidden text into file (stego-image.ppm)!");
+                            String outJPG = fileNameTP.substring(0, fileNameTP.lastIndexOf(File.separator)) + "\\stego-image.jpg";
+                            JOptionPane.showMessageDialog(tabbedPane, "Successfully hidden text into file:" + outJPG);
                         }
                     }
                 };

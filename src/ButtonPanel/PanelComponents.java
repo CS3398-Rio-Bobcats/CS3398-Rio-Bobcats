@@ -82,7 +82,7 @@ public class PanelComponents {
         JTextField textToHideTF = new JTextField("", 20);
         card1.add(textToHide);
         card1.add(textToHideTF);
-        JLabel fileName = new JLabel("Enter file name of picture. (Must be .ppm)");
+        JLabel fileName = new JLabel("Enter file name of picture ");
         JTextField fileNameTF = new JTextField("", 40);
         card1.add(fileName);
         card1.add(fileNameTF);

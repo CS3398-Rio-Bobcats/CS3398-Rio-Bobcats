@@ -4,6 +4,8 @@ import imageconverter.ImageConverter;
 import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import steganographer.Steganographer;
 
 public class DisplayMessages {
@@ -66,9 +68,8 @@ public class DisplayMessages {
                                             ImageConverter.convert(foo, "ppm");
                                             foo = ImageConverter.getOutputPathFromInputPath(foo, "ppm");
                                         } catch (Exception ex) {
-                                          Logger.getLogger(ButtonPanel.class.getName()).log(Level.SEVERE, null, ex);
+                                          //Logger.getLogger(ButtonPanel.class.getName()).log(Level.SEVERE, null, ex);
                                         }
-                            default:    break;
         }
         
         File f = new File(foo);

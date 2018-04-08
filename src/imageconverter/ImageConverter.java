@@ -55,7 +55,7 @@ public class ImageConverter {
         return new ArrayList<>(Arrays.asList("jpg", "jpeg", "png", "ppm", "gif"));
     }
 
-    private static String getFileExtensionFromPath(String path) {
+    public static String getFileExtensionFromPath(String path) {
         int i = path.lastIndexOf('.');
         if (i > 0) {
             return path.substring(i + 1);

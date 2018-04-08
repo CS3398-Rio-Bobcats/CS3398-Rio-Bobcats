@@ -5,6 +5,7 @@ package ButtonPanel;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import imageconverter.ImageConverter;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -84,7 +85,7 @@ public class ButtonActions {
             public void actionPerformed(ActionEvent ev) {
                 logger.getLogger().log(Level.INFO, "User submitted a file name and text to hide");
                 Thread qThread = new Thread() {
-                    public void run() {
+                    public void run() {           
                         File f = new File(origName.getText());
                         File f2 = new File(stegName.getText());
                         Steganographer steg = new Steganographer(f);
@@ -109,6 +110,20 @@ public class ButtonActions {
                         stegName.setText(fc.getSelectedFile().toString());
                     }
                 }
+                    String ext = ImageConverter.getFileExtensionFromPath(stegName.getText());
+                        
+                        switch (ext){
+                            case "jpeg":
+                            case "jpg":
+                            case "gif":
+                            case "png":
+                            case "ppm": break;
+                            default:
+                                    stegName.setText("");
+                                    JFrame frame = new JFrame();
+                                    JOptionPane.showMessageDialog(frame, "Please select a valid image file.");
+                                    return;
+                        }
             }
         });
         origBrowse.addActionListener(new ActionListener() {
@@ -124,6 +139,20 @@ public class ButtonActions {
                         origName.setText(fc.getSelectedFile().toString());
                     }
                 }
+                    String ext = ImageConverter.getFileExtensionFromPath(origName.getText());
+                        
+                    switch (ext){
+                        case "jpeg":
+                        case "jpg":
+                        case "gif":
+                        case "png":
+                        case "ppm": break;
+                        default:
+                                origName.setText("");
+                                JFrame frame = new JFrame();
+                                JOptionPane.showMessageDialog(frame, "Please select a valid image file.");
+                                return;
+                    }
             }
         });
         //Display the window.

@@ -55,7 +55,7 @@ public class convertImage extends JPanel {
         imgBrsBtn = new JButton();          // image browse button
         submitBtn = new JButton();          // submit button
 
-        setBackground(new Color(219, 237, 230));
+        setBackground(new Color(231, 241, 248));
 
         headerLbl.setBackground(new Color(255, 255, 255));
         headerLbl.setFont(new Font("Georgia", 0, 24)); 

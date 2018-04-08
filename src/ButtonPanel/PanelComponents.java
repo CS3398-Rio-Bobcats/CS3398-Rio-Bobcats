@@ -116,7 +116,7 @@ public class PanelComponents {
                         }
                         if (!flag) {
                             String outJPG = fileNameTP.substring(0, fileNameTP.lastIndexOf(File.separator)) + "\\stego-image.jpg";
-                            JOptionPane.showMessageDialog(tabbedPane, "Successfully hidden text into file:" + outJPG);
+                            JOptionPane.showMessageDialog(tabbedPane, "Successfully hidden text into file: " + outJPG);
                         }
                     }
                 };

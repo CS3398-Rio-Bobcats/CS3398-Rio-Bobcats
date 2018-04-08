@@ -1,4 +1,4 @@
-package ButtonPanel;
+package ButtonComponents;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,17 +22,23 @@ import javax.swing.WindowConstants;
 import steganographer.Steganographer;
 
 /**
- *
- * @author Ayisha Sowkathali
+ * This class is to set actions for the buttons on our GUI
+ * hideImageInImage and revealImageFromImage doesn't work
+ * @author Zach Sotak Ayisha Sowkathali
  */
 public class ButtonActions {
 
+    //Initialize logger
     logger l = new logger();
 
     // Create content pane
     PanelComponents pc = new PanelComponents();
 
-    // Needs work
+    /**
+     * This function hideTextInImage() will setup the window to type text
+     * to hide in an image. It will call newPanel from PanelCompnents
+     * and will lead to hiding text in the image.
+     */
     public void hideTextInImage() {
         JFrame frame = new JFrame("Hide text in an Image");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -47,7 +53,7 @@ public class ButtonActions {
         logger.getLogger().log(Level.INFO, "User has entered 'Hide text in an Image'");
     }
 
-    //Needs work
+    //Problem with source code, may need to be removed
     public void hideImageInImage() {
         JFrame frame1 = new JFrame("Hide an image in another image");
         frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -61,7 +67,13 @@ public class ButtonActions {
         logger.getLogger().log(Level.INFO, "User opened up GUI option to hide an image in another image");
     }
 
-    // Needs work
+
+    /**
+     * This function revealTextFromImage() will setup the window to browse for revealing Text
+     * from an image. It will receive the image with the hidden message
+     * in the first field, and the original image in the second field
+     * and output to screen the hidden message.
+     */
     public void revealTextFromImage() {
         JFrame frame1 = new JFrame("Reveal text from steganography image");
         JPanel searchpanel = new JPanel();
@@ -83,7 +95,7 @@ public class ButtonActions {
         searchpanel.setVisible(true);
         submit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
-                logger.getLogger().log(Level.INFO, "User submitted a file name and text to hide");
+//                logger.getLogger().log(Level.INFO, "User submitted a file name and text to hide");
                 Thread qThread = new Thread() {
                     public void run() {
                         String ext = ImageConverter.getFileExtensionFromPath(origName.getText());
@@ -118,7 +130,7 @@ public class ButtonActions {
         });
         stegBrowse.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
-                logger.getLogger().log(Level.INFO, "User is searching for file");
+//                logger.getLogger().log(Level.INFO, "User is searching for file");
                 if (ev.getSource() == stegBrowse) {
                     JButton open = new JButton();
                     JFileChooser fc = new JFileChooser();
@@ -143,7 +155,7 @@ public class ButtonActions {
         });
         origBrowse.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
-                logger.getLogger().log(Level.INFO, "User is searching for file");
+//                logger.getLogger().log(Level.INFO, "User is searching for file");
                 if (ev.getSource() == origBrowse) {
                     JButton open = new JButton();
                     JFileChooser fc = new JFileChooser();
@@ -180,7 +192,7 @@ public class ButtonActions {
         logger.getLogger().log(Level.INFO, "User opened up GUI option to reveal text from stego image");
     }
 
-    //Needs work
+    // Without the hideImageInImage() theres no reason for this method.
     protected void revealImageFromImage() {
         JFrame frame1 = new JFrame("Reveal an image from a steganography image");
         JPanel searchpanel = new JPanel();
@@ -227,7 +239,12 @@ public class ButtonActions {
         logger.getLogger().log(Level.INFO, "User opened up GUI option reveal an image from stego image");
     }
 
-    //should be working
+    /**
+     * This function convertImage() will convert an image into the desired
+     * format and return the result to the folder it was found
+     * with the same name with the desired format.
+     *
+     */
     public void convertImage() {
         JFrame frame1 = new JFrame("Convert image to (ppm, jpg, jpeg, png, gif)");
         JPanel searchpanel = new JPanel();
@@ -250,6 +267,7 @@ public class ButtonActions {
         searchpanel.setVisible(true);
         submit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                JFrame frame = new JFrame();
                 Thread qThread;
                 qThread = new Thread() {
                     public void run() {
@@ -257,20 +275,19 @@ public class ButtonActions {
                         String typeTP = null;
                         boolean flag = false;
                         if (fileNameTF.getText().length() == 0) {
-                            logger.getLogger().log(Level.WARNING, "User submitted an empty field text (File Name)");
+//                            logger.getLogger().log(Level.WARNING, "User submitted an empty field text (File Name)");
                         }
                         fileNameTP = fileNameTF.getText();
                         if (typeField.getText().length() == 0) {
-                            logger.getLogger().log(Level.WARNING, "User submitted an empty field text (Type Name)");
+//                            logger.getLogger().log(Level.WARNING, "User submitted an empty field text (Type Name)");
                         }
                         typeTP = typeField.getText();
 
                         String outputPath = DisplayMessages.convertImage(fileNameTP, typeTP, flag);
                         field.setText("STATUS: Successfully converted file!");
                         if (flag) {
-                            JOptionPane.showMessageDialog(searchpanel, "Successfully converted file!");
+                            JOptionPane.showMessageDialog(frame, "Successfully converted file!");
                         }
-                        JFrame frame = new JFrame();
                         JOptionPane.showMessageDialog(frame, "Created image: " + outputPath);
                     }
                 };

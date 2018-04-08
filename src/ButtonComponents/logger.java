@@ -1,4 +1,4 @@
-package ButtonPanel;
+package ButtonComponents;
 
 import java.io.IOException;
 import java.util.logging.FileHandler;
@@ -12,6 +12,8 @@ import java.util.logging.Logger;
 public class logger {
 
     protected static Logger logger = Logger.getLogger(ButtonPanel.class.getName());
+    
+//    protected static Logger logger = Logger.getLogger(MainDriver.class.getName());
     protected static FileHandler fh;
 
     /**

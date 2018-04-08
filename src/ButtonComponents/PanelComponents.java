@@ -1,8 +1,8 @@
-package ButtonPanel;
+package ButtonComponents;
 
-import ButtonPanel.DisplayMessages;
-import ButtonPanel.ButtonPanel;
-import ButtonPanel.logger;
+import ButtonComponents.DisplayMessages;
+import ButtonComponents.ButtonPanel;
+import ButtonComponents.logger;
 import ImagePreview.ImagePreview;
 import imageconverter.ImageConverter;
 import java.awt.BorderLayout;
@@ -30,7 +30,7 @@ import javax.swing.JTextField;
  */
 /**
  *
- * @author Ayisha Sowkathali
+ * @author Zach Sotak Ayisha Sowkathali
  */
 public class PanelComponents {
 
@@ -65,6 +65,10 @@ public class PanelComponents {
         extraWindowWidth = aExtraWindowWidth;
     }
 
+    /**
+     * This is the panel that gets called for hiding text in an image
+     * @param pane this is the container that this function recieves
+     */
     public void newPanel(Container pane) {
         JTabbedPane tabbedPane = new JTabbedPane();
         String imageFileName = "NULL";
@@ -180,7 +184,11 @@ public class PanelComponents {
         pane.add(tabbedPane, BorderLayout.WEST);
     }
 
-    //needs work
+    /**
+     * This is the panel that gets called for revealing text from an image
+     * with the hidden message when compared to the original image.
+     * @param pane this is the container that this function recieves
+     */
     public void newPanelDoubleImage(Container pane) {
         JTabbedPane tabbedPane = new JTabbedPane();
         String imageFileName = "NULL";

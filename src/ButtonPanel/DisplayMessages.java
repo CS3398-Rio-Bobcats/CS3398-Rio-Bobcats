@@ -4,6 +4,8 @@ import imageconverter.ImageConverter;
 import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import steganographer.Steganographer;
 
 public class DisplayMessages {
@@ -56,6 +58,20 @@ public class DisplayMessages {
         System.out.println("Text to hide: ");
         String text = scan.nextLine();
          */
+        String ext = ImageConverter.getFileExtensionFromPath(foo);
+        switch (ext){
+                            case "jpeg":
+                            case "jpg":
+                            case "gif":
+                            case "png":
+                                        try {
+                                            ImageConverter.convert(foo, "ppm");
+                                            foo = ImageConverter.getOutputPathFromInputPath(foo, "ppm");
+                                        } catch (Exception ex) {
+                                          //Logger.getLogger(ButtonPanel.class.getName()).log(Level.SEVERE, null, ex);
+                                        }
+        }
+        
         File f = new File(foo);
         Steganographer steg = new Steganographer(f);
         boolean hidden = steg.hide(text.getBytes(), "text");

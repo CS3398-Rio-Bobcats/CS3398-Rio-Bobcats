@@ -5,6 +5,7 @@ package ButtonComponents;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import imageconverter.ImageConverter;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -76,7 +77,7 @@ public class ButtonActions {
     public void revealTextFromImage() {
         JFrame frame1 = new JFrame("Reveal text from steganography image");
         JPanel searchpanel = new JPanel();
-        JLabel stegField = new JLabel("Stego image:   ");
+        JLabel stegField = new JLabel("Stego image (.ppm):   ");
         JTextField stegName = new JTextField(50);
         JButton stegBrowse = new JButton("Browse");
         JLabel origField = new JLabel("Original image:");
@@ -97,6 +98,25 @@ public class ButtonActions {
 //                logger.getLogger().log(Level.INFO, "User submitted a file name and text to hide");
                 Thread qThread = new Thread() {
                     public void run() {
+                        String ext = ImageConverter.getFileExtensionFromPath(origName.getText());
+                        
+                        switch (ext){
+                            case "jpeg":
+                            case "jpg":
+                            case "gif":
+                            case "png":
+                                try {
+                                    ImageConverter.convert(origName.getText(), "ppm");
+                                    origName.setText(ImageConverter.getOutputPathFromInputPath(origName.getText(), "ppm"));
+                                } catch (Exception ex) {
+                                  logger.getLogger().log(Level.SEVERE, null, ex);
+                                }
+                            case "ppm": break;
+                            default: break;
+                        }
+
+                        System.out.println("Orig: " + origName.getText());
+                        System.out.println("Stego: " + stegName.getText());
                         File f = new File(origName.getText());
                         File f2 = new File(stegName.getText());
                         Steganographer steg = new Steganographer(f);
@@ -121,6 +141,16 @@ public class ButtonActions {
                         stegName.setText(fc.getSelectedFile().toString());
                     }
                 }
+                    String ext = ImageConverter.getFileExtensionFromPath(stegName.getText());
+                        
+                        switch (ext){
+                            case "ppm": break;
+                            default:
+                                    stegName.setText("");
+                                    JFrame frame = new JFrame();
+                                    JOptionPane.showMessageDialog(frame, "Please select a PPM image file.");
+                                    return;
+                        }
             }
         });
         origBrowse.addActionListener(new ActionListener() {
@@ -136,6 +166,20 @@ public class ButtonActions {
                         origName.setText(fc.getSelectedFile().toString());
                     }
                 }
+                    String ext = ImageConverter.getFileExtensionFromPath(origName.getText());
+                        
+                    switch (ext){
+                        case "jpeg":
+                        case "jpg":
+                        case "gif":
+                        case "png":
+                        case "ppm": break;
+                        default:
+                                origName.setText("");
+                                JFrame frame = new JFrame();
+                                JOptionPane.showMessageDialog(frame, "Please select a valid image file.");
+                                return;
+                    }
             }
         });
         //Display the window.

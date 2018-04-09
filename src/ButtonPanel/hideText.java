@@ -59,7 +59,7 @@ public class hideText extends JPanel {
         browse = new JButton();
         submit = new JButton();
 
-        setBackground(new Color(190, 239, 237));
+        setBackground(new Color(231, 241, 248));
 
         hdrLbl.setBackground(new Color(255, 255, 255));
         hdrLbl.setFont(new Font("Georgia", 0, 24)); // NOI18N

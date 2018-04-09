@@ -90,6 +90,24 @@ public class hideText extends JPanel {
                     }
                 } catch (Exception ex) {
                     ex.printStackTrace();
+=======
+        
+      // Drag and Drop Image
+	chosenImage.setDropTarget(new DropTarget() {
+                    public synchronized void drop(DropTargetDropEvent evt) {
+            try {
+                evt.acceptDrop(DnDConstants.ACTION_COPY);
+                List<File> droppedFiles = (List<File>) evt
+                        .getTransferable().getTransferData(
+                                DataFlavor.javaFileListFlavor);
+                for (File file : droppedFiles) {
+                    /*
+                     * NOTE:
+                     *  When I change this to a println,
+                     *  it prints the correct path
+                     */
+                    chosenImage.setText(file.getAbsolutePath());
+>>>>>>> a77d5a1abb058feaa7be41f9a1f0ce816c5a1af7
                 }
             }
         });
@@ -182,14 +200,22 @@ public class hideText extends JPanel {
                 } catch (Exception ex) {
 //                    Logger.getLogger(ButtonPanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
+<<<<<<< HEAD
 
                 String ext = ImageConverter.getFileExtensionFromPath(chosenImage.getText());
 
                 switch (ext) {
+=======
+                
+                String ext = ImageConverter.getFileExtensionFromPath(chosenImage.getText());
+                
+                switch (ext){
+>>>>>>> a77d5a1abb058feaa7be41f9a1f0ce816c5a1af7
                     case "jpeg":
                     case "jpg":
                     case "gif":
                     case "png":
+<<<<<<< HEAD
                         try {
                             ImageConverter.convert(chosenImage.getText(), "ppm");
                             chosenImage.setText(ImageConverter.getOutputPathFromInputPath(chosenImage.getText(), "ppm"));
@@ -205,6 +231,22 @@ public class hideText extends JPanel {
                         return;
                 }
 
+=======
+                                try {
+                                    ImageConverter.convert(chosenImage.getText(), "ppm");
+                                    chosenImage.setText(ImageConverter.getOutputPathFromInputPath(chosenImage.getText(), "ppm"));
+                                } catch (Exception ex) {
+                                  //Logger.getLogger(ButtonPanel.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                    case "ppm": break;
+                    default:
+                                    chosenImage.setText("");
+                                    JFrame frame = new JFrame();
+                                    JOptionPane.showMessageDialog(frame, "Please select a valid image file.");
+                                    return;
+                }
+                
+>>>>>>> a77d5a1abb058feaa7be41f9a1f0ce816c5a1af7
                 File img = new File(ImageConverter.getOutputPathFromInputPath(chosenImage.getText(), "jpg"));
                 ImagePreview ip = new ImagePreview(img, 200);
                 JFrame frame = new JFrame();
@@ -253,11 +295,19 @@ public class hideText extends JPanel {
                 enteredText = textEntered.getText();
                 DisplayMessages.hideText(fileChosen, enteredText, flag);
                 try {
+<<<<<<< HEAD
                     String outPPM = fileChosen.substring(0, fileChosen.lastIndexOf(File.separator)) + "\\stego-image.ppm";
                     ImageConverter.convert(outPPM, "jpg");
                 } catch (Exception ex) {
                     // Logger.getLogger(ButtonPanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
+=======
+                            String outPPM = fileChosen.substring(0, fileChosen.lastIndexOf(File.separator)) + "\\stego-image.ppm";
+                            ImageConverter.convert(outPPM, "jpg");
+                        } catch (Exception ex) {
+                         // Logger.getLogger(ButtonPanel.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+>>>>>>> a77d5a1abb058feaa7be41f9a1f0ce816c5a1af7
                 if (!flag) {
 //                            JOptionPane.showMessageDialog(, "Successfully hidden text into file (stego-image.ppm)!");
                     String outJPG = fileChosen.substring(0, fileChosen.lastIndexOf(File.separator)) + "\\stego-image.jpg";

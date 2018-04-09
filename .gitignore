@@ -25,3 +25,6 @@ ImageMagick/www/subversion.html
 *.properties
 *.xml
 /dist/
+*.txt
+*.txt
+log.txt

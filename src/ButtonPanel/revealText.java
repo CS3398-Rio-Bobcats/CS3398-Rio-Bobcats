@@ -5,6 +5,7 @@
  */
 package ButtonPanel;
 
+import imageconverter.ImageConverter;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -256,6 +257,18 @@ public class revealText extends javax.swing.JPanel {
             if (fc.showOpenDialog(open) == JFileChooser.APPROVE_OPTION) {
                 stgFld.setText(fc.getSelectedFile().toString());
             }
+            
+            
+                String ext = ImageConverter.getFileExtensionFromPath(stgFld.getText());
+                
+                switch (ext){
+                    case "ppm":     break;
+                    default:
+                                    stgFld.setText("");
+                                    JFrame frame = new JFrame();
+                                    JOptionPane.showMessageDialog(frame, "Please select a valid .ppm image file.");
+                                    return;
+                }
         }
     }
 
@@ -276,6 +289,31 @@ public class revealText extends javax.swing.JPanel {
             if (fc.showOpenDialog(open) == JFileChooser.APPROVE_OPTION) {
                 orgFld.setText(fc.getSelectedFile().toString());
             }
+            
+            
+            String ext = ImageConverter.getFileExtensionFromPath(orgFld.getText());
+                
+            switch (ext){
+                case "jpeg":
+                case "jpg":
+                case "gif":
+                case "png":
+                            try {
+                                ImageConverter.convert(orgFld.getText(), "ppm");
+                                orgFld.setText(ImageConverter.getOutputPathFromInputPath(orgFld.getText(), "ppm"));
+                            } catch (Exception ex) {
+                              //Logger.getLogger(ButtonPanel.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                case "ppm": break;
+                default:
+                                orgFld.setText("");
+                                JFrame frame = new JFrame();
+                                JOptionPane.showMessageDialog(frame, "Please select a valid image file.");
+                                return;
+            }
+            
+            
+            
         }
     }                                                        
 }

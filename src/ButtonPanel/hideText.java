@@ -215,12 +215,6 @@ public class hideText extends JPanel {
                     case "jpg":
                     case "gif":
                     case "png":
-                                try {
-                                    ImageConverter.convert(chosenImage.getText(), "ppm");
-                                    chosenImage.setText(ImageConverter.getOutputPathFromInputPath(chosenImage.getText(), "ppm"));
-                                } catch (Exception ex) {
-                                  //Logger.getLogger(ButtonPanel.class.getName()).log(Level.SEVERE, null, ex);
-                                }
                     case "ppm": break;
                     default:
                                     chosenImage.setText("");
@@ -264,6 +258,24 @@ public class hideText extends JPanel {
                 String enteredText;
                 String fileChosen;
                 boolean flag = false;
+                
+                String ext = ImageConverter.getFileExtensionFromPath(chosenImage.getText());
+                
+                switch (ext){
+                    case "jpeg":
+                    case "jpg":
+                    case "gif":
+                    case "png":
+                                try {
+                                    ImageConverter.convert(chosenImage.getText(), "ppm");
+                                    chosenImage.setText(ImageConverter.getOutputPathFromInputPath(chosenImage.getText(), "ppm"));
+                                } catch (Exception ex) {
+                                  //Logger.getLogger(ButtonPanel.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                    case "ppm": break;
+                    default:    break;
+                }
+                
                 if (chosenImage.getText().length() == 0) {
 //                            logger.getLogger().log(Level.WARNING, "User submitted an empty field text (File Name)");
                     System.out.println("User submitted an empty field text (File Name)");

@@ -76,6 +76,7 @@ public class hideText extends JPanel {
 
         chIooseImgLbl.setFont(new Font("Georgia", 0, 18)); // NOI18N
         chIooseImgLbl.setText("Choose Image");
+<<<<<<< HEAD
 
         // Drag and Drop Image
         chosenImage.setDropTarget(new DropTarget() {

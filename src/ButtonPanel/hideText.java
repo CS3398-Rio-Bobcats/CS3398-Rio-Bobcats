@@ -8,6 +8,7 @@ package ButtonPanel;
 import ImagePreview.ImagePreview;
 import imageconverter.ImageConverter;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.dnd.DnDConstants;
@@ -22,6 +23,7 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
@@ -29,13 +31,14 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 
 /**
- * This class is responsible for the
- * hiding text in an image function of this application
+ * This class is responsible for the hiding text in an image function of this
+ * application
  *
- * @author Ayisha Sowkathali Zach Sotak
+ * @author Ayisha Sowkathali
+ * @author Zack Sotak
  */
 public class hideText extends JPanel {
-                        
+
     private JButton browse;
     private JLabel chIooseImgLbl;
     private JTextField chosenImage;
@@ -47,7 +50,7 @@ public class hideText extends JPanel {
     public hideText() {
         initComponents();
     }
-                       
+
     private void initComponents() {
 
         hdrLbl = new JLabel();
@@ -69,135 +72,108 @@ public class hideText extends JPanel {
 
         textEntered.setFont(new Font("Century", 0, 14)); // NOI18N
         textEntered.setToolTipText("Enter text you wish to hide");
-        textEntered.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        textEntered.setCursor(new Cursor(Cursor.TEXT_CURSOR));
 
         chIooseImgLbl.setFont(new Font("Georgia", 0, 18)); // NOI18N
-        chIooseImgLbl.setText("Choose Image (.ppm)");
-        
-      // Drag and Drop Image
-	chosenImage.setDropTarget(new DropTarget() {
-                    public synchronized void drop(DropTargetDropEvent evt) {
-            try {
-                evt.acceptDrop(DnDConstants.ACTION_COPY);
-                List<File> droppedFiles = (List<File>) evt
-                        .getTransferable().getTransferData(
-                                DataFlavor.javaFileListFlavor);
-                for (File file : droppedFiles) {
-                    /*
-                     * NOTE:
-                     *  When I change this to a println,
-                     *  it prints the correct path
-                     */
-                    chosenImage.setText(file.getAbsolutePath());
+        chIooseImgLbl.setText("Choose Image");
+
+        // Drag and Drop Image
+        chosenImage.setDropTarget(new DropTarget() {
+            public synchronized void drop(DropTargetDropEvent evt) {
+                try {
+                    evt.acceptDrop(DnDConstants.ACTION_COPY);
+                    List<File> droppedFiles = (List<File>) evt
+                            .getTransferable().getTransferData(
+                                    DataFlavor.javaFileListFlavor);
+                    for (File file : droppedFiles) {
+                        chosenImage.setText(file.getAbsolutePath());
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
-            } catch (Exception ex) {
-                ex.printStackTrace();
             }
-        }
         });
-
-
 
         browse.setFont(new Font("Verdana", 1, 18)); // NOI18N
         browse.setText("Browse");
-        browse.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, 
-                Color.darkGray, Color.lightGray, Color.darkGray, Color.lightGray));
-        browse.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                browseActionPerformed(evt);
-            }
+        browse.setBorder(new SoftBevelBorder(BevelBorder.LOWERED,
+                Color.darkGray, Color.lightGray,
+                Color.darkGray, Color.lightGray));
+        browse.addActionListener((ActionEvent evt) -> {
+            browseActionPerformed(evt);
         });
 
-        submit.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        submit.setFont(new Font("Verdana", 1, 18)); // NOI18N
         submit.setText("Submit");
-        submit.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, 
-                Color.darkGray, Color.lightGray, Color.darkGray, Color.lightGray));
-        submit.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                submitActionPerformed(evt);
-            }
+        submit.setBorder(new SoftBevelBorder(BevelBorder.LOWERED,
+                Color.darkGray, Color.lightGray,
+                Color.darkGray, Color.lightGray));
+        submit.addActionListener((ActionEvent evt) -> {
+            submitActionPerformed(evt);
         });
 
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(entTxtLbl)
-                    .addComponent(textEntered, GroupLayout.PREFERRED_SIZE, 500, 
-                            GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(62, Short.MAX_VALUE))
-            .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(GroupLayout.Alignment.TRAILING, 
-                            layout.createSequentialGroup()
-                        .addComponent(hdrLbl)
-                        .addContainerGap())
-                    .addGroup(GroupLayout.Alignment.TRAILING, 
-                            layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(
-                                GroupLayout.Alignment.TRAILING)
-                            .addComponent(chosenImage, 
-                                    GroupLayout.Alignment.LEADING, 
-                                    GroupLayout.PREFERRED_SIZE, 500, 
-                                    GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(browse, 
-                                        GroupLayout.PREFERRED_SIZE, 100, 
-                                        GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(submit, 
-                                        GroupLayout.PREFERRED_SIZE, 100, 
-                                        GroupLayout.PREFERRED_SIZE))
-                            .addComponent(chIooseImgLbl, 
-                                    GroupLayout.Alignment.LEADING))
-                        .addGap(49, 49, 49))))
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(hdrLbl)
+                                                .addContainerGap())
+                                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(browse, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                                                                .addGap(50, 50, 50)
+                                                                .addComponent(submit, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                                                .addComponent(entTxtLbl)
+                                                                .addComponent(textEntered, GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
+                                                                .addComponent(chIooseImgLbl)
+                                                                .addComponent(chosenImage, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                .addGap(50, 50, 50))))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(hdrLbl)
-                .addGap(52, 52, 52)
-                .addComponent(entTxtLbl)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(textEntered, GroupLayout.PREFERRED_SIZE, 130, 
-                        GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 42, 
-                        Short.MAX_VALUE)
-                .addComponent(chIooseImgLbl)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(chosenImage, GroupLayout.PREFERRED_SIZE, 45, 
-                        GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(browse, GroupLayout.PREFERRED_SIZE, 40, 
-                            GroupLayout.PREFERRED_SIZE)
-                    .addComponent(submit, GroupLayout.PREFERRED_SIZE, 40, 
-                            GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51))
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(hdrLbl)
+                                .addGap(52, 52, 52)
+                                .addComponent(entTxtLbl)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(textEntered, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                                .addComponent(chIooseImgLbl)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(chosenImage, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(132, 132, 132))
+                                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(browse, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(submit, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+                                                .addGap(65, 65, 65))))
         );
-    }// </editor-fold>                        
+    }
 
     /**
-     * This is the action taken when the browse button is pushed
-     * and the filechooser will make a popup window of your files
-     * and allow you to select a file.
+     * This is the action taken when the browse button is pushed and the file
+     * chooser will make a pop-up window of your files and allow you to select a
+     * file.
+     *
      * @param evt
      */
-    private void browseActionPerformed(java.awt.event.ActionEvent evt) {                                       
-
-//      logger.getLogger().log(Level.INFO, "User is searching for file");
+    private void browseActionPerformed(ActionEvent evt) {
         if (evt.getSource() == browse) {
             JButton open = new JButton();
             JFileChooser fc = new JFileChooser();
             fc.setCurrentDirectory(new File(System.getenv("USERPROFILE") + "\\Desktop"));
             fc.setDialogTitle("Steganograpy");
             fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-            
+
             if (fc.showOpenDialog(open) == JFileChooser.APPROVE_OPTION) {
                 chosenImage.setText(fc.getSelectedFile().toString());
                 //System.out.println(fileNameTF.getText());
@@ -206,6 +182,29 @@ public class hideText extends JPanel {
                 } catch (Exception ex) {
 //                    Logger.getLogger(ButtonPanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
+
+                String ext = ImageConverter.getFileExtensionFromPath(chosenImage.getText());
+
+                switch (ext) {
+                    case "jpeg":
+                    case "jpg":
+                    case "gif":
+                    case "png":
+                        try {
+                            ImageConverter.convert(chosenImage.getText(), "ppm");
+                            chosenImage.setText(ImageConverter.getOutputPathFromInputPath(chosenImage.getText(), "ppm"));
+                        } catch (Exception ex) {
+                            //Logger.getLogger(ButtonPanel.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    case "ppm":
+                        break;
+                    default:
+                        chosenImage.setText("");
+                        JFrame frame = new JFrame();
+                        JOptionPane.showMessageDialog(frame, "Please select a valid image file.");
+                        return;
+                }
+
                 File img = new File(ImageConverter.getOutputPathFromInputPath(chosenImage.getText(), "jpg"));
                 ImagePreview ip = new ImagePreview(img, 200);
                 JFrame frame = new JFrame();
@@ -228,15 +227,16 @@ public class hideText extends JPanel {
     }
 
     /**
-     * This is the action taken when the submit button is pushed
-     * and the file chosen and text to hide will be handled by
-     * the DisplayMessages.hideText function.
+     * This is the action taken when the submit button is pushed and the file
+     * chosen and text to hide will be handled by the DisplayMessages.hideText
+     * function.
+     *
      * @param evt
      */
-    private void submitActionPerformed(java.awt.event.ActionEvent evt) {                                       
-        // TODO add your handling code here:
-        Thread qThread;
-        qThread = new Thread() {
+    private void submitActionPerformed(ActionEvent evt) {
+        Thread execute;
+        execute = new Thread() {
+            @Override
             public void run() {
                 String enteredText;
                 String fileChosen;
@@ -252,12 +252,21 @@ public class hideText extends JPanel {
                 }
                 enteredText = textEntered.getText();
                 DisplayMessages.hideText(fileChosen, enteredText, flag);
+                try {
+                    String outPPM = fileChosen.substring(0, fileChosen.lastIndexOf(File.separator)) + "\\stego-image.ppm";
+                    ImageConverter.convert(outPPM, "jpg");
+                } catch (Exception ex) {
+                    // Logger.getLogger(ButtonPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 if (!flag) {
 //                            JOptionPane.showMessageDialog(, "Successfully hidden text into file (stego-image.ppm)!");
-                    System.out.println("Successfully hidden text into file (stego-image.ppm)!");
+                    String outJPG = fileChosen.substring(0, fileChosen.lastIndexOf(File.separator)) + "\\stego-image.jpg";
+                    JFrame frame = new JFrame();
+                    JOptionPane.showMessageDialog(frame, "Successfully hidden text into file: " + outJPG);
+                    //System.out.println("Successfully hidden text into file (stego-image.ppm)!");
                 }
             }
         };
-        qThread.start();
-    }                                                        
+        execute.start();
+    }
 }

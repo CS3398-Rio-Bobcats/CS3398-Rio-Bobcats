@@ -1,3 +1,5 @@
+https://travis-ci.org/CS3398-Rio-Bobcats/CS3398-Rio-Bobcats-S2018.svg?branch=master
+
 # CS3398-Rio-Bobcats
 
 

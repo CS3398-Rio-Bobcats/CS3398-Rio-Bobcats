@@ -67,7 +67,7 @@ public class revealText extends javax.swing.JPanel {
         headerLbl.setText("Reveal Text from an Image");
 
         stgLbl.setFont(new Font("Georgia", 0, 18)); 
-        stgLbl.setText("Choose Stegano Image");
+        stgLbl.setText("Choose Stegano Image (.ppm)");
 
         stgFld.setMinimumSize(new Dimension(50, 20));
         stgFld.setSize(new Dimension(50, 20));

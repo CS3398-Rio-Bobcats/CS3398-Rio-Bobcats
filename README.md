@@ -1,4 +1,4 @@
-https://travis-ci.org/CS3398-Rio-Bobcats/CS3398-Rio-Bobcats-S2018.svg?branch=master
+[![Build Status](https://travis-ci.org/CS3398-Rio-Bobcats/CS3398-Rio-Bobcats-S2018.svg?branch=master)](https://travis-ci.org/CS3398-Rio-Bobcats/CS3398-Rio-Bobcats-S2018)
 
 # CS3398-Rio-Bobcats
 

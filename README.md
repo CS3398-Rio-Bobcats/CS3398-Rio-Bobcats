@@ -38,9 +38,7 @@ What has been done:
 
 ● Implement Drag and Drop feature
 
-
-
-
+● Implement an automatic conversion to .ppm when file is chosen
 
 Additional features to be implemented (tentative):
 

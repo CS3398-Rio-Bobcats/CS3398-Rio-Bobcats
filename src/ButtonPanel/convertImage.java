@@ -7,9 +7,20 @@ package ButtonPanel;
 
 import java.awt.Color;
 import java.awt.Font;
+<<<<<<< HEAD
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+=======
+import java.awt.datatransfer.DataFlavor;
+import java.awt.dnd.DnDConstants;
+import java.awt.dnd.DropTarget;
+import java.awt.dnd.DropTargetDropEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.List;
+>>>>>>> master
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -50,7 +61,11 @@ public class convertImage extends JPanel {
         imgBrsBtn = new JButton();          // image browse button
         submitBtn = new JButton();          // submit button
 
+<<<<<<< HEAD
         setBackground(new Color(219, 237, 230));
+=======
+        setBackground(new Color(231, 241, 248));
+>>>>>>> master
 
         headerLbl.setBackground(new Color(255, 255, 255));
         headerLbl.setFont(new Font("Georgia", 0, 24)); 
@@ -58,6 +73,31 @@ public class convertImage extends JPanel {
 
         chooseImgLbl.setFont(new Font("Georgia", 0, 18)); 
         chooseImgLbl.setText("Choose Image ");
+<<<<<<< HEAD
+=======
+     //Drag and Drop Image
+        imgChosenFld.setDropTarget(new DropTarget() {
+                    public synchronized void drop(DropTargetDropEvent evt) {
+            try {
+                evt.acceptDrop(DnDConstants.ACTION_COPY);
+                List<File> droppedFiles = (List<File>) evt
+                        .getTransferable().getTransferData(
+                                DataFlavor.javaFileListFlavor);
+                for (File file : droppedFiles) {
+                    /*
+                     * NOTE:
+                     *  When I change this to a println,
+                     *  it prints the correct path
+                     */
+                    imgChosenFld.setText(file.getAbsolutePath());
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        });
+
+>>>>>>> master
 
         entFrmtLbl.setFont(new Font("Georgia", 0, 18)); 
         entFrmtLbl.setText("Enter Image format to convert (ppm, jpg, jpeg, png, gif)");
@@ -141,6 +181,15 @@ public class convertImage extends JPanel {
         );
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * This is the action taken when the browse button is pushed
+     * and the filechooser will make a popup window of your files
+     * and allow you to select a file.
+     * @param evt
+     */
+>>>>>>> master
     private void imgBrsBtnActionPerformed(java.awt.event.ActionEvent evt) {
 //        logger.getLogger().log(Level.INFO, "User is searching for file");
         if (evt.getSource() == imgBrsBtn) {
@@ -155,6 +204,15 @@ public class convertImage extends JPanel {
         }
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * This is the action taken when the submit button is pushed
+     * and the file chosen will be handled by DisplayMessages.convertImage
+     * and will convert image and output a message of the filename.
+     * @param evt
+     */
+>>>>>>> master
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {
         JFrame frame = new JFrame();
         Thread qThread;

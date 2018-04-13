@@ -5,12 +5,27 @@
  */
 package ButtonPanel;
 
+<<<<<<< HEAD
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+=======
+import imageconverter.ImageConverter;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.dnd.DnDConstants;
+import java.awt.dnd.DropTarget;
+import java.awt.dnd.DropTargetDropEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.List;
+>>>>>>> master
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -24,7 +39,12 @@ import javax.swing.border.SoftBevelBorder;
 import steganographer.Steganographer;
 
 /**
+<<<<<<< HEAD
  *
+=======
+ * This class is responsible for the
+ * revealing text from an image function of this application
+>>>>>>> master
  * @author Ayisha Sowkathali
  */
 public class revealText extends javax.swing.JPanel {
@@ -64,9 +84,58 @@ public class revealText extends javax.swing.JPanel {
 
         stgFld.setMinimumSize(new Dimension(50, 20));
         stgFld.setSize(new Dimension(50, 20));
+<<<<<<< HEAD
 
         orgLbl.setFont(new Font("Georgia", 0, 18)); 
         orgLbl.setText("Choose Original Image");
+=======
+        // Drag and Drop Image        
+        stgFld.setDropTarget(new DropTarget() {
+                    public synchronized void drop(DropTargetDropEvent evt) {
+            try {
+                evt.acceptDrop(DnDConstants.ACTION_COPY);
+                List<File> droppedFiles = (List<File>) evt
+                        .getTransferable().getTransferData(
+                                DataFlavor.javaFileListFlavor);
+                for (File file : droppedFiles) {
+                    /*
+                     * NOTE:
+                     *  When I change this to a println,
+                     *  it prints the correct path
+                     */
+                    stgFld.setText(file.getAbsolutePath());
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        });
+
+        orgLbl.setFont(new Font("Georgia", 0, 18)); 
+        orgLbl.setText("Choose Original Image");
+// Drag and Drop Image 
+        orgFld.setDropTarget(new DropTarget() {
+                    public synchronized void drop(DropTargetDropEvent evt) {
+            try {
+                evt.acceptDrop(DnDConstants.ACTION_COPY);
+                List<File> droppedFiles = (List<File>) evt
+                        .getTransferable().getTransferData(
+                                DataFlavor.javaFileListFlavor);
+                for (File file : droppedFiles) {
+                    /*
+                     * NOTE:
+                     *  When I change this to a println,
+                     *  it prints the correct path
+                     */
+                    orgFld.setText(file.getAbsolutePath());
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        });
+
+>>>>>>> master
 
         submitBtn.setFont(new Font("Verdana", 1, 18)); 
         submitBtn.setText("Submit");
@@ -167,8 +236,19 @@ public class revealText extends javax.swing.JPanel {
                         GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
         );
+<<<<<<< HEAD
     }                                                            
 
+=======
+    }
+
+    /**
+     * This is the action taken when the submit button is pushed
+     * and the two files chosen will be handled by steg.reveal
+     * and display the hidden message
+     * @param evt
+     */
+>>>>>>> master
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
 //        logger.getLogger().log(Level.INFO, "User submitted a file name and text to hide");
         Thread qThread = new Thread() {
@@ -182,8 +262,19 @@ public class revealText extends javax.swing.JPanel {
             }
         };
         qThread.start();
+<<<<<<< HEAD
     }                                         
 
+=======
+    }
+
+    /**
+     * This is the action taken when the browse button is pushed
+     * and the filechooser will make a popup window of your files
+     * and allow you to select a file.
+     * @param evt
+     */
+>>>>>>> master
     private void stegBrsBtnActionPerformed(java.awt.event.ActionEvent evt) {                                           
 //        logger.getLogger().log(Level.INFO, "User is searching for file");
         if (evt.getSource() == stegBrsBtn) {
@@ -195,9 +286,33 @@ public class revealText extends javax.swing.JPanel {
             if (fc.showOpenDialog(open) == JFileChooser.APPROVE_OPTION) {
                 stgFld.setText(fc.getSelectedFile().toString());
             }
+<<<<<<< HEAD
         }
     }                                          
 
+=======
+            
+            
+                String ext = ImageConverter.getFileExtensionFromPath(stgFld.getText());
+                
+                switch (ext){
+                    case "ppm":     break;
+                    default:
+                                    stgFld.setText("");
+                                    JFrame frame = new JFrame();
+                                    JOptionPane.showMessageDialog(frame, "Please select a valid .ppm image file.");
+                                    return;
+                }
+        }
+    }
+
+    /**
+     * This is the action taken when the browse button is pushed
+     * and the filechooser will make a popup window of your files
+     * and allow you to select a file.
+     * @param evt
+     */
+>>>>>>> master
     private void orgBrsBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
 //        logger.getLogger().log(Level.INFO, "User is searching for file");
         if (evt.getSource() == orgBrsBtn) {
@@ -209,6 +324,34 @@ public class revealText extends javax.swing.JPanel {
             if (fc.showOpenDialog(open) == JFileChooser.APPROVE_OPTION) {
                 orgFld.setText(fc.getSelectedFile().toString());
             }
+<<<<<<< HEAD
+=======
+            
+            
+            String ext = ImageConverter.getFileExtensionFromPath(orgFld.getText());
+                
+            switch (ext){
+                case "jpeg":
+                case "jpg":
+                case "gif":
+                case "png":
+                            try {
+                                ImageConverter.convert(orgFld.getText(), "ppm");
+                                orgFld.setText(ImageConverter.getOutputPathFromInputPath(orgFld.getText(), "ppm"));
+                            } catch (Exception ex) {
+                              //Logger.getLogger(ButtonPanel.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                case "ppm": break;
+                default:
+                                orgFld.setText("");
+                                JFrame frame = new JFrame();
+                                JOptionPane.showMessageDialog(frame, "Please select a valid image file.");
+                                return;
+            }
+            
+            
+            
+>>>>>>> master
         }
     }                                                        
 }

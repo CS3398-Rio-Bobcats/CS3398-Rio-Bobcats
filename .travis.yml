@@ -1,13 +1,23 @@
 language: java
 
 jdk:
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
     - oraclejdk8
     
 # whitelist
 branches:
     only:
         - master
+<<<<<<< HEAD
         - zachDevelopment  
        
 after_success:
     - mvn clean test jacoco:report coveralls:report
+=======
+       
+after_success:
+- mvn clean test jacoco:report coveralls:report
+>>>>>>> master

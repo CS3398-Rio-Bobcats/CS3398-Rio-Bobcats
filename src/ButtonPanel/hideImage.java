@@ -7,6 +7,7 @@
 package ButtonPanel;
 
 import java.awt.Color;
+<<<<<<< HEAD
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -42,10 +43,25 @@ public class hideImage extends javax.swing.JPanel {
     private JTextField stgFld;
     private JLabel stgLbl;
     private JButton submitBtn;  
+=======
+import java.awt.Font;
+import javax.swing.GroupLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+/**
+ *
+ * @author Ayisha Sowkathali
+ */
+public class hideImage extends JPanel {
+    
+    private JLabel hdrLabel;
+>>>>>>> master
 
     public hideImage() {
         initComponents();
     }
+<<<<<<< HEAD
                           
     private void initComponents() {
 
@@ -145,12 +161,32 @@ public class hideImage extends javax.swing.JPanel {
                                         GroupLayout.PREFERRED_SIZE, 100, 
                                         GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 60, Short.MAX_VALUE)))
+=======
+                        
+    private void initComponents() {
+
+        hdrLabel = new JLabel();
+
+        setBackground(new Color(255, 255, 204));
+
+        hdrLabel.setFont(new Font("Georgia", 0, 24)); // NOI18N
+        hdrLabel.setText("Hide Image in an Image");
+
+        javax.swing.GroupLayout layout = new GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(328, Short.MAX_VALUE)
+                .addComponent(hdrLabel)
+>>>>>>> master
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+<<<<<<< HEAD
                 .addComponent(headerLbl)
                 .addGap(72, 72, 72)
                 .addComponent(stgLbl)
@@ -223,3 +259,11 @@ public class hideImage extends javax.swing.JPanel {
         }
     }                                                        
 }
+=======
+                .addComponent(hdrLabel)
+                .addContainerGap(456, Short.MAX_VALUE))
+        );
+    }                                     
+}
+
+>>>>>>> master

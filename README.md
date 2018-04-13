@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/CS3398-Rio-Bobcats/CS3398-Rio-Bobcats-S2018.svg?branch=master)](https://travis-ci.org/CS3398-Rio-Bobcats/CS3398-Rio-Bobcats-S2018)
+
 # CS3398-Rio-Bobcats
 
 
@@ -28,18 +30,31 @@ What has been done:
 
 ● Convert Image Functional on Windows.
 
+● Seperated code into seperate classes.
+
+● Updated the GUI
+
+● Minimized size of ImageMagick
+
+● Implement Drag and Drop feature
+
+● Implement an automatic conversion to .ppm when file is chosen
 
 Additional features to be implemented (tentative):
 
-● Get the last 2 functions working on the GUI.
+● Implement JUnit testing.
+
+● Create a logo
+
+● Add Welcome Page to the application.
+
+● Find error in source code to hide image in an image.
 
 ● Add functionality to Convert Image for OS and LINUX.
 
 ● Make interface visually appealing and intuitively easy to use.
 
 ● Finish error handling.
-
-● Clean up code and add comments to functions.
 
 ● Image masking - The user will be able to select an image to hide inside of the source image.
 

@@ -30,7 +30,7 @@ import javax.swing.JTextField;
  */
 /**
  *
- * @author Ayisha Sowkathali
+ * @author Zach Sotak Ayisha Sowkathali
  */
 public class PanelComponents {
 
@@ -65,6 +65,10 @@ public class PanelComponents {
         extraWindowWidth = aExtraWindowWidth;
     }
 
+    /**
+     * This is the panel that gets called for hiding text in an image
+     * @param pane this is the container that this function recieves
+     */
     public void newPanel(Container pane) {
         JTabbedPane tabbedPane = new JTabbedPane();
         String imageFileName = "NULL";
@@ -82,7 +86,7 @@ public class PanelComponents {
         JTextField textToHideTF = new JTextField("", 20);
         card1.add(textToHide);
         card1.add(textToHideTF);
-        JLabel fileName = new JLabel("Enter file name of picture. (Must be .ppm)");
+        JLabel fileName = new JLabel("Enter file name of picture ");
         JTextField fileNameTF = new JTextField("", 40);
         card1.add(fileName);
         card1.add(fileNameTF);
@@ -108,8 +112,15 @@ public class PanelComponents {
                         }
                         textToHideTP = textToHideTF.getText();
                         DisplayMessages.hideText(fileNameTP, textToHideTP, flag);
+                        try {
+                            String outPPM = fileNameTP.substring(0, fileNameTP.lastIndexOf(File.separator)) + "\\stego-image.ppm";
+                            ImageConverter.convert(outPPM, "jpg");
+                        } catch (Exception ex) {
+                          Logger.getLogger(ButtonPanel.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                         if (!flag) {
-                            JOptionPane.showMessageDialog(tabbedPane, "Successfully hidden text into file (stego-image.ppm)!");
+                            String outJPG = fileNameTP.substring(0, fileNameTP.lastIndexOf(File.separator)) + "\\stego-image.jpg";
+                            JOptionPane.showMessageDialog(tabbedPane, "Successfully hidden text into file: " + outJPG);
                         }
                     }
                 };
@@ -127,6 +138,21 @@ public class PanelComponents {
                     fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
                     if (fc.showOpenDialog(open) == JFileChooser.APPROVE_OPTION) {
                         fileNameTF.setText(fc.getSelectedFile().toString());
+                        
+                        String ext = ImageConverter.getFileExtensionFromPath(fileNameTF.getText());
+                        
+                        switch (ext){
+                            case "jpeg":
+                            case "jpg":
+                            case "gif":
+                            case "png":
+                            case "ppm": break;
+                            default:
+                                    fileNameTF.setText("");
+                                    JFrame frame = new JFrame();
+                                    JOptionPane.showMessageDialog(frame, "Please select a valid image file.");
+                                    return;
+                        }
                         //System.out.println(fileNameTF.getText());
                         try {
                             ImageConverter.convert(fileNameTF.getText(), "jpg");
@@ -158,7 +184,11 @@ public class PanelComponents {
         pane.add(tabbedPane, BorderLayout.WEST);
     }
 
-    //needs work
+    /**
+     * This is the panel that gets called for revealing text from an image
+     * with the hidden message when compared to the original image.
+     * @param pane this is the container that this function recieves
+     */
     public void newPanelDoubleImage(Container pane) {
         JTabbedPane tabbedPane = new JTabbedPane();
         String imageFileName = "NULL";

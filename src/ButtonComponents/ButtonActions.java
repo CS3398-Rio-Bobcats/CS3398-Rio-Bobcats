@@ -5,6 +5,7 @@ package ButtonComponents;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import imageconverter.ImageConverter;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,17 +22,23 @@ import javax.swing.WindowConstants;
 import steganographer.Steganographer;
 
 /**
- *
- * @author Ayisha Sowkathali
+ * This class is to set actions for the buttons on our GUI
+ * hideImageInImage and revealImageFromImage doesn't work
+ * @author Zach Sotak Ayisha Sowkathali
  */
 public class ButtonActions {
 
+    //Initialize logger
     logger l = new logger();
 
     // Create content pane
     PanelComponents pc = new PanelComponents();
 
-    // Needs work
+    /**
+     * This function hideTextInImage() will setup the window to type text
+     * to hide in an image. It will call newPanel from PanelCompnents
+     * and will lead to hiding text in the image.
+     */
     public void hideTextInImage() {
         JFrame frame = new JFrame("Hide text in an Image");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -46,7 +53,7 @@ public class ButtonActions {
         logger.getLogger().log(Level.INFO, "User has entered 'Hide text in an Image'");
     }
 
-    //Needs work
+    //Problem with source code, may need to be removed
     public void hideImageInImage() {
         JFrame frame1 = new JFrame("Hide an image in another image");
         frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -60,11 +67,17 @@ public class ButtonActions {
         logger.getLogger().log(Level.INFO, "User opened up GUI option to hide an image in another image");
     }
 
-    // Needs work
+
+    /**
+     * This function revealTextFromImage() will setup the window to browse for revealing Text
+     * from an image. It will receive the image with the hidden message
+     * in the first field, and the original image in the second field
+     * and output to screen the hidden message.
+     */
     public void revealTextFromImage() {
         JFrame frame1 = new JFrame("Reveal text from steganography image");
         JPanel searchpanel = new JPanel();
-        JLabel stegField = new JLabel("Stego image:   ");
+        JLabel stegField = new JLabel("Stego image (.ppm):   ");
         JTextField stegName = new JTextField(50);
         JButton stegBrowse = new JButton("Browse");
         JLabel origField = new JLabel("Original image:");
@@ -85,6 +98,25 @@ public class ButtonActions {
 //                logger.getLogger().log(Level.INFO, "User submitted a file name and text to hide");
                 Thread qThread = new Thread() {
                     public void run() {
+                        String ext = ImageConverter.getFileExtensionFromPath(origName.getText());
+                        
+                        switch (ext){
+                            case "jpeg":
+                            case "jpg":
+                            case "gif":
+                            case "png":
+                                try {
+                                    ImageConverter.convert(origName.getText(), "ppm");
+                                    origName.setText(ImageConverter.getOutputPathFromInputPath(origName.getText(), "ppm"));
+                                } catch (Exception ex) {
+                                  logger.getLogger().log(Level.SEVERE, null, ex);
+                                }
+                            case "ppm": break;
+                            default: break;
+                        }
+
+                        System.out.println("Orig: " + origName.getText());
+                        System.out.println("Stego: " + stegName.getText());
                         File f = new File(origName.getText());
                         File f2 = new File(stegName.getText());
                         Steganographer steg = new Steganographer(f);
@@ -109,6 +141,16 @@ public class ButtonActions {
                         stegName.setText(fc.getSelectedFile().toString());
                     }
                 }
+                    String ext = ImageConverter.getFileExtensionFromPath(stegName.getText());
+                        
+                        switch (ext){
+                            case "ppm": break;
+                            default:
+                                    stegName.setText("");
+                                    JFrame frame = new JFrame();
+                                    JOptionPane.showMessageDialog(frame, "Please select a PPM image file.");
+                                    return;
+                        }
             }
         });
         origBrowse.addActionListener(new ActionListener() {
@@ -124,6 +166,20 @@ public class ButtonActions {
                         origName.setText(fc.getSelectedFile().toString());
                     }
                 }
+                    String ext = ImageConverter.getFileExtensionFromPath(origName.getText());
+                        
+                    switch (ext){
+                        case "jpeg":
+                        case "jpg":
+                        case "gif":
+                        case "png":
+                        case "ppm": break;
+                        default:
+                                origName.setText("");
+                                JFrame frame = new JFrame();
+                                JOptionPane.showMessageDialog(frame, "Please select a valid image file.");
+                                return;
+                    }
             }
         });
         //Display the window.
@@ -136,7 +192,7 @@ public class ButtonActions {
         logger.getLogger().log(Level.INFO, "User opened up GUI option to reveal text from stego image");
     }
 
-    //Needs work
+    // Without the hideImageInImage() theres no reason for this method.
     protected void revealImageFromImage() {
         JFrame frame1 = new JFrame("Reveal an image from a steganography image");
         JPanel searchpanel = new JPanel();
@@ -183,7 +239,12 @@ public class ButtonActions {
         logger.getLogger().log(Level.INFO, "User opened up GUI option reveal an image from stego image");
     }
 
-    //should be working
+    /**
+     * This function convertImage() will convert an image into the desired
+     * format and return the result to the folder it was found
+     * with the same name with the desired format.
+     *
+     */
     public void convertImage() {
         JFrame frame1 = new JFrame("Convert image to (ppm, jpg, jpeg, png, gif)");
         JPanel searchpanel = new JPanel();

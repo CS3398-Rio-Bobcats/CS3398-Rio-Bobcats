@@ -6,6 +6,7 @@
 package ButtonPanel;
 
 import java.awt.Color;
+<<<<<<< HEAD
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -35,10 +36,26 @@ public class revealImage extends javax.swing.JPanel {
     private JTextField stgFld;
     private JLabel stgLbl;
     private JButton submitBtn;  
+=======
+import java.awt.Font;
+import javax.swing.GroupLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+/**
+ *
+ * @author Ayisha Sowkathali
+ */
+public class revealImage extends JPanel {
+                        
+    private JLabel hdrLabel;
+
+>>>>>>> master
 
     public revealImage() {
         initComponents();
     }
+<<<<<<< HEAD
                           
     private void initComponents() {
 
@@ -98,10 +115,23 @@ public class revealImage extends javax.swing.JPanel {
                 orgBrsBtnActionPerformed(evt);
             }
         });
+=======
+                         
+    private void initComponents() {
+
+        hdrLabel = new JLabel();
+
+        setBackground(new Color(249, 226, 226));
+
+        hdrLabel.setBackground(new Color(255, 255, 255));
+        hdrLabel.setFont(new Font("Georgia", 0, 24)); // NOI18N
+        hdrLabel.setText("Reveal Image from an Image");
+>>>>>>> master
 
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
+<<<<<<< HEAD
             layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -210,3 +240,20 @@ public class revealImage extends javax.swing.JPanel {
         }
     }                                                        
 }
+=======
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap(278, Short.MAX_VALUE)
+                                .addComponent(hdrLabel)
+                                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(hdrLabel)
+                                .addContainerGap(456, Short.MAX_VALUE))
+        );
+    }                       
+}
+>>>>>>> master

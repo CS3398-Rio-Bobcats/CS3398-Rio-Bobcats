@@ -19,6 +19,7 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -98,6 +99,9 @@ public class guiComponents extends JFrame {
         if (System.getProperty("os.name").contains("Windows")
                 || (System.getProperty("os.name").contains("Mac"))) {
             setResizable(false);
+            
+            // set icon to executable .jar file
+            setIconImage(new ImageIcon(getClass().getResource("/OtherResources/stgIcon.png")).getImage());
         }
 
         mainPanel = new JPanel();
@@ -124,9 +128,9 @@ public class guiComponents extends JFrame {
         headerPanel.setSize(new Dimension(800, 100));
 
         title.setBackground(new Color(0, 102, 102));
-        title.setFont(new Font("PT Mono", 1, 24));
+        title.setFont(new Font("PT Mono", 1, 48));
         title.setForeground(new Color(255, 255, 255));
-        title.setText("Steganographia");
+        title.setText("Rio Stego");
 
         GroupLayout headerPanelLayout = new GroupLayout(headerPanel);
         headerPanel.setLayout(headerPanelLayout);

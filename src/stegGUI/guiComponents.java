@@ -124,9 +124,9 @@ public class guiComponents extends JFrame {
         headerPanel.setSize(new Dimension(800, 100));
 
         title.setBackground(new Color(0, 102, 102));
-        title.setFont(new Font("PT Mono", 1, 24));
+        title.setFont(new Font("PT Mono", 1, 48));
         title.setForeground(new Color(255, 255, 255));
-        title.setText("Steganographia");
+        title.setText("RioStego");
 
         GroupLayout headerPanelLayout = new GroupLayout(headerPanel);
         headerPanel.setLayout(headerPanelLayout);

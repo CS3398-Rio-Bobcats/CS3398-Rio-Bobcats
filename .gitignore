@@ -28,3 +28,4 @@ ImageMagick/www/subversion.html
 *.txt
 *.txt
 log.txt
+*.xml

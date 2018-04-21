@@ -67,7 +67,7 @@ public class revealText extends javax.swing.JPanel {
         headerLbl.setText("Reveal Text from an Image");
 
         stgLbl.setFont(new Font("Georgia", 0, 18)); 
-        stgLbl.setText("Choose Stegano Image");
+        stgLbl.setText("Choose Stegano Image (.ppm)");
 
         stgFld.setMinimumSize(new Dimension(50, 20));
         stgFld.setSize(new Dimension(50, 20));
@@ -229,6 +229,23 @@ public class revealText extends javax.swing.JPanel {
 //        logger.getLogger().log(Level.INFO, "User submitted a file name and text to hide");
         Thread qThread = new Thread() {
             public void run() {
+                
+            String ext = ImageConverter.getFileExtensionFromPath(orgFld.getText()); 
+            switch (ext){
+                case "jpeg":
+                case "jpg":
+                case "gif":
+                case "png":
+                            try {
+                                ImageConverter.convert(orgFld.getText(), "ppm");
+                                orgFld.setText(ImageConverter.getOutputPathFromInputPath(orgFld.getText(), "ppm"));
+                            } catch (Exception ex) {
+                              //Logger.getLogger(ButtonPanel.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                case "ppm": break;
+                default:
+            }
+            
                 File f1 = new File(orgFld.getText());
                 File f2 = new File(stgFld.getText());
                 Steganographer steg = new Steganographer(f1);
@@ -298,12 +315,6 @@ public class revealText extends javax.swing.JPanel {
                 case "jpg":
                 case "gif":
                 case "png":
-                            try {
-                                ImageConverter.convert(orgFld.getText(), "ppm");
-                                orgFld.setText(ImageConverter.getOutputPathFromInputPath(orgFld.getText(), "ppm"));
-                            } catch (Exception ex) {
-                              //Logger.getLogger(ButtonPanel.class.getName()).log(Level.SEVERE, null, ex);
-                            }
                 case "ppm": break;
                 default:
                                 orgFld.setText("");

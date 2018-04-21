@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author aryamabebe
+ * @author aryam abebe
  */
 public class ImageConverterIT {
     

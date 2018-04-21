@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package imageconverter;
+/*package imageconverter;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
  *
  * @author aryam abebe
  */
-public class ImageConverterIT {
+/*public class ImageConverterIT {
     
     public ImageConverterIT() {
     }
@@ -72,4 +72,4 @@ public class ImageConverterIT {
         fail("The test case is a prototype.");
     }
     
-}
+}*/

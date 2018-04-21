@@ -17,7 +17,10 @@ import java.awt.dnd.DropTargetDropEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.List;
+import java.util.Scanner;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -190,18 +193,7 @@ public class hideText extends JPanel {
                     case "jpg":
                     case "gif":
                     case "png":
-<<<<<<< HEAD
                     case "ppm": break;
-=======
-                        try {
-                            ImageConverter.convert(chosenImage.getText(), "ppm");
-                            chosenImage.setText(ImageConverter.getOutputPathFromInputPath(chosenImage.getText(), "ppm"));
-                        } catch (Exception ex) {
-                            //Logger.getLogger(ButtonPanel.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    case "ppm":
-                        break;
->>>>>>> master
                     default:
                         chosenImage.setText("");
                         JFrame frame = new JFrame();
@@ -263,6 +255,8 @@ public class hideText extends JPanel {
                     default:    break;
                 }
                 
+                removeBlankLines(chosenImage.getText());
+                
                 if (chosenImage.getText().length() == 0) {
 //                            logger.getLogger().log(Level.WARNING, "User submitted an empty field text (File Name)");
                     System.out.println("User submitted an empty field text (File Name)");
@@ -290,5 +284,33 @@ public class hideText extends JPanel {
             }
         };
         execute.start();
+    }
+    public static void removeBlankLines(String image){
+        String tempImage = ImageConverter.getOutputPathFromInputPath(image, "temp");
+        File file1 = new File(image);
+        File file2 = new File(tempImage);
+        
+        try {
+            Scanner fileScan = new Scanner(file1);
+            PrintWriter writer = new PrintWriter(tempImage);
+
+            while (fileScan.hasNext()) {
+                String line = fileScan.nextLine();
+                if (!line.isEmpty()) {
+                    writer.write(line);
+                    writer.write("\n");
+                }
+            }
+
+            fileScan.close();
+            writer.close();
+            
+            file1.delete();
+            file2.renameTo(file1);
+        }
+        catch(FileNotFoundException ex){
+            
+        }
+
     }
 }

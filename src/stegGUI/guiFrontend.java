@@ -10,6 +10,7 @@ import ButtonPanel.convertImage;
 //import ButtonPanel.hideImage;
 import ButtonPanel.revealText;
 import ButtonPanel.hideText;
+import ButtonPanel.homePanel;
 //import ButtonPanel.revealImage;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -31,7 +32,7 @@ import javax.swing.border.BevelBorder;
  *
  * @author Ayisha Sowkathali
  */
-public class guiComponents extends JFrame {
+public class guiFrontend extends JFrame {
 
     private JPanel buttonPanel;
     private JButton convert;
@@ -47,15 +48,17 @@ public class guiComponents extends JFrame {
     private JLabel title;
 
     GridBagLayout gLayout = new GridBagLayout();
+    homePanel hP;
     convertImage cI;
     hideText hT;
 //    hideImage hI;
     revealText rT;
 //    revealImage rI;    
 
-    public guiComponents() {
+    public guiFrontend() {
         initComponents();
-
+        
+        hP = new homePanel();
         cI = new convertImage();
         hT = new hideText();
 //        hI = new hideImage();
@@ -65,6 +68,10 @@ public class guiComponents extends JFrame {
         dynamicPanel.setLayout(gLayout);
         GridBagConstraints c = new GridBagConstraints();
 
+        c.gridx = 0;
+        c.gridy = 0;
+        dynamicPanel.add(hP, c);
+        
         c.gridx = 0;
         c.gridy = 0;
         dynamicPanel.add(cI, c);
@@ -83,7 +90,9 @@ public class guiComponents extends JFrame {
 //        c.gridx = 0;
 //        c.gridy = 0;
 //        dynamicPanel.add(rI, c);
-        cI.setVisible(true);
+
+        hP.setVisible(true);
+        cI.setVisible(false);
         hT.setVisible(false);
 //        hI.setVisible(false);
         rT.setVisible(false);
@@ -100,10 +109,9 @@ public class guiComponents extends JFrame {
                 || (System.getProperty("os.name").contains("Mac"))) {
             setResizable(false);
             
-            // set icon to executable .jar file
             setIconImage(new ImageIcon(getClass().getResource("/OtherResources/stgIcon.png")).getImage());
         }
-
+     
         mainPanel = new JPanel();
         headerPanel = new JPanel();
         title = new JLabel();
@@ -162,6 +170,9 @@ public class guiComponents extends JFrame {
         homePanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,
                 new Color(0, 102, 102), new Color(0, 102, 102),
                 new Color(0, 153, 153), new Color(0, 102, 102)));
+        homePanel.addActionListener((ActionEvent evt) -> {
+            homePanelActionPerformed(evt);
+        });
 
         hideText.setBackground(new Color(0, 102, 102));
         hideText.setFont(new Font("Arial", 0, 18));
@@ -186,6 +197,7 @@ public class guiComponents extends JFrame {
 //        hideImage.addActionListener((ActionEvent evt) -> {
 //            hideImageActionPerformed(evt);
 //        });
+
         revealText.setBackground(new Color(0, 102, 102));
         revealText.setFont(new Font("Arial", 0, 18));
         revealText.setForeground(new Color(255, 255, 255));
@@ -209,6 +221,7 @@ public class guiComponents extends JFrame {
 //        revealImage.addActionListener((ActionEvent evt) -> {
 //            revealImageActionPerformed(evt);
 //        });
+
         convert.setBackground(new Color(0, 102, 102));
         convert.setFont(new Font("Arial", 0, 18));
         convert.setForeground(new Color(255, 255, 255));
@@ -345,6 +358,20 @@ public class guiComponents extends JFrame {
         );
         pack();
     }
+    
+    /**
+     * The function homePanelActionPerformed is designed to display the "home
+     * panel" which is shown when the "welcome" button is clicked. 
+     * @param evt 
+     */
+    private void homePanelActionPerformed(ActionEvent evt) {
+        hP.setVisible(true);
+        hT.setVisible(false);
+//        hI.setVisible(false);
+        rT.setVisible(false);
+//        rI.setVisible(false);
+        cI.setVisible(false);
+    }
 
     /**
      * The function hideTextActionPerformed is designed to display the "hide
@@ -359,6 +386,7 @@ public class guiComponents extends JFrame {
         rT.setVisible(false);
 //        rI.setVisible(false);
         cI.setVisible(false);
+        hP.setVisible(false);
     }
 
     /**
@@ -374,6 +402,7 @@ public class guiComponents extends JFrame {
 //        rT.setVisible(false);
 //        rI.setVisible(false);
 //        cI.setVisible(false);
+//        hP.setVisible(false);
 //    }
     /**
      * The function revealTextActionPerformed is designed to display the "reveal
@@ -388,6 +417,7 @@ public class guiComponents extends JFrame {
         rT.setVisible(true);
 //        rI.setVisible(false);
         cI.setVisible(false);
+        hP.setVisible(false);
     }
 
     /**
@@ -403,6 +433,7 @@ public class guiComponents extends JFrame {
 //        rT.setVisible(false);
 //        rI.setVisible(true);
 //        cI.setVisible(false);
+//        hP.setVisible(false);
 //    }
     /**
      * The function convertActionPerformed is designed to display the convert
@@ -416,6 +447,7 @@ public class guiComponents extends JFrame {
         rT.setVisible(false);
 //        rI.setVisible(false);
         cI.setVisible(true);
+        hP.setVisible(false);
     }
 
     /**

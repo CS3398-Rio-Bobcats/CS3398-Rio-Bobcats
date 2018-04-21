@@ -246,6 +246,8 @@ public class revealText extends javax.swing.JPanel {
                 default:
             }
             
+                hideText.removeBlankLines(orgFld.getText());
+            
                 File f1 = new File(orgFld.getText());
                 File f2 = new File(stgFld.getText());
                 Steganographer steg = new Steganographer(f1);

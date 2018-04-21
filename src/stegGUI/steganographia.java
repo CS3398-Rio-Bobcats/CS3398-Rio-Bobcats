@@ -11,7 +11,7 @@ import javax.swing.SwingUtilities;
  *
  * @author Ayisha Sowkathali
  */
-public class MainDriver {    
+public class steganographia {    
     /**
      * main() is the initializer and executes the GUI on an EDT as opposed to
      * the main thread
@@ -20,7 +20,7 @@ public class MainDriver {
      */
     public static void main(String args[]) {       
         SwingUtilities.invokeLater(() -> {
-            new guiComponents().setVisible(true);
+            new guiFrontend().setVisible(true);
         });
     }
 }

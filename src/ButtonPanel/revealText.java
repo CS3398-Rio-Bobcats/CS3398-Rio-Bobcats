@@ -6,6 +6,7 @@
 package ButtonPanel;
 
 import imageconverter.ImageConverter;
+import Encryption.decryption;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -233,8 +234,9 @@ public class revealText extends javax.swing.JPanel {
                 File f2 = new File(stgFld.getText());
                 Steganographer steg = new Steganographer(f1);
                 String result = steg.reveal(f2, "text");
+                String decryptedText = Encryption.decryption.decrypt(result);
                 JFrame frame = new JFrame();
-                JOptionPane.showMessageDialog(frame, "Hidden text: " + result);
+                JOptionPane.showMessageDialog(frame, "Hidden text: " + decryptedText);
             }
         };
         qThread.start();

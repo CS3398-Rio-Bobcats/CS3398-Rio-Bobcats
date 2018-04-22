@@ -49,6 +49,7 @@ public class hideText extends JPanel {
     private JLabel hdrLbl;
     private JButton submit;
     private JTextField textEntered;
+    private ImagePreview ip;
 
     public hideText() {
         initComponents();
@@ -63,6 +64,7 @@ public class hideText extends JPanel {
         chosenImage = new JTextField();
         browse = new JButton();
         submit = new JButton();
+        ip = new ImagePreview(new File("default.jpg"), 75);
 
         setBackground(new Color(231, 241, 248));
 
@@ -135,8 +137,12 @@ public class hideText extends JPanel {
                                                                 .addComponent(entTxtLbl)
                                                                 .addComponent(textEntered, GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
                                                                 .addComponent(chIooseImgLbl)
-                                                                .addComponent(chosenImage, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                                .addGap(50, 50, 50))))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(chosenImage, 400, 400, 400)
+                                                                .addGap(13, 13, 13)
+                                                                .addComponent(ip, 75, 75, 75))))
+                                                .addGap(50, 50, 50)
+                                        )))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -152,13 +158,15 @@ public class hideText extends JPanel {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addComponent(chosenImage, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(layout.createParallelGroup()
+                                                    .addComponent(chosenImage, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(ip, 75, 75, 75))
                                                 .addGap(132, 132, 132))
                                         .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                                         .addComponent(browse, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(submit, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
-                                                .addGap(65, 65, 65))))
+                                                        .addGap(65, 65, 65))))
         );
     }
 
@@ -200,7 +208,7 @@ public class hideText extends JPanel {
                         JOptionPane.showMessageDialog(frame, "Please select a valid image file.");
                         return;
                 }
-
+/* OLD IMAGE PREVIEW
                 File img = new File(ImageConverter.getOutputPathFromInputPath(chosenImage.getText(), "jpg"));
                 ImagePreview ip = new ImagePreview(img, 200);
                 JFrame frame = new JFrame();
@@ -209,6 +217,7 @@ public class hideText extends JPanel {
                 frame.setSize(200, 240);
                 //frame.setDefaultCloseOperation(JFrame.);
                 frame.setVisible(true);
+*/
                 /*      //Code used for ImagePreview test
                         File img = new File("tux.jpg");
                         ImagePreview ip = new ImagePreview(img, 150);

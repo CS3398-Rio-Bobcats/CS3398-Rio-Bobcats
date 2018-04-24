@@ -6,6 +6,7 @@
 package ButtonPanel;
 
 import ImagePreview.ImagePreview;
+import Encryption.encryption;
 import imageconverter.ImageConverter;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -243,7 +244,7 @@ public class hideText extends JPanel {
         execute = new Thread() {
             @Override
             public void run() {
-                String enteredText;
+                String enteredText, encryptionText;
                 String fileChosen;
                 boolean flag = false;
                 
@@ -276,7 +277,9 @@ public class hideText extends JPanel {
                     System.out.println("User submitted an empty field text (File Name)");
                 }
                 enteredText = textEntered.getText();
-                DisplayMessages.hideText(fileChosen, enteredText, flag);
+                encryptionText = Encryption.encryption.encrypt(enteredText);
+                
+                DisplayMessages.hideText(fileChosen, encryptionText, flag);
                 try {
                     String outPPM = fileChosen.substring(0, fileChosen.lastIndexOf(File.separator)) + "\\stego-image.ppm";
                     ImageConverter.convert(outPPM, "jpg");

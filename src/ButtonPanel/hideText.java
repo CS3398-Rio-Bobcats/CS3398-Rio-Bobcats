@@ -18,7 +18,10 @@ import java.awt.dnd.DropTargetDropEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.List;
+import java.util.Scanner;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -47,6 +50,7 @@ public class hideText extends JPanel {
     private JLabel hdrLbl;
     private JButton submit;
     private JTextField textEntered;
+    private ImagePreview ip;
 
     public hideText() {
         initComponents();
@@ -61,6 +65,7 @@ public class hideText extends JPanel {
         chosenImage = new JTextField();
         browse = new JButton();
         submit = new JButton();
+        ip = new ImagePreview(new File("default.jpg"), 75);
 
         setBackground(new Color(231, 241, 248));
 
@@ -133,8 +138,12 @@ public class hideText extends JPanel {
                                                                 .addComponent(entTxtLbl)
                                                                 .addComponent(textEntered, GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
                                                                 .addComponent(chIooseImgLbl)
-                                                                .addComponent(chosenImage, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                                .addGap(50, 50, 50))))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(chosenImage, 400, 400, 400)
+                                                                .addGap(13, 13, 13)
+                                                                .addComponent(ip, 75, 75, 75))))
+                                                .addGap(50, 50, 50)
+                                        )))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -150,13 +159,15 @@ public class hideText extends JPanel {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addComponent(chosenImage, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(layout.createParallelGroup()
+                                                    .addComponent(chosenImage, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(ip, 75, 75, 75))
                                                 .addGap(132, 132, 132))
                                         .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                                         .addComponent(browse, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(submit, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
-                                                .addGap(65, 65, 65))))
+                                                        .addGap(65, 65, 65))))
         );
     }
 
@@ -191,21 +202,14 @@ public class hideText extends JPanel {
                     case "jpg":
                     case "gif":
                     case "png":
-                        try {
-                            ImageConverter.convert(chosenImage.getText(), "ppm");
-                            chosenImage.setText(ImageConverter.getOutputPathFromInputPath(chosenImage.getText(), "ppm"));
-                        } catch (Exception ex) {
-                            //Logger.getLogger(ButtonPanel.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    case "ppm":
-                        break;
+                    case "ppm": break;
                     default:
                         chosenImage.setText("");
                         JFrame frame = new JFrame();
                         JOptionPane.showMessageDialog(frame, "Please select a valid image file.");
                         return;
                 }
-
+/* OLD IMAGE PREVIEW
                 File img = new File(ImageConverter.getOutputPathFromInputPath(chosenImage.getText(), "jpg"));
                 ImagePreview ip = new ImagePreview(img, 200);
                 JFrame frame = new JFrame();
@@ -214,6 +218,7 @@ public class hideText extends JPanel {
                 frame.setSize(200, 240);
                 //frame.setDefaultCloseOperation(JFrame.);
                 frame.setVisible(true);
+*/
                 /*      //Code used for ImagePreview test
                         File img = new File("tux.jpg");
                         ImagePreview ip = new ImagePreview(img, 150);
@@ -242,6 +247,26 @@ public class hideText extends JPanel {
                 String enteredText, encryptionText;
                 String fileChosen;
                 boolean flag = false;
+                
+                String ext = ImageConverter.getFileExtensionFromPath(chosenImage.getText());
+                
+                switch (ext){
+                    case "jpeg":
+                    case "jpg":
+                    case "gif":
+                    case "png":
+                                try {
+                                    ImageConverter.convert(chosenImage.getText(), "ppm");
+                                    chosenImage.setText(ImageConverter.getOutputPathFromInputPath(chosenImage.getText(), "ppm"));
+                                } catch (Exception ex) {
+                                  //Logger.getLogger(ButtonPanel.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                    case "ppm": break;
+                    default:    break;
+                }
+                
+                removeBlankLines(chosenImage.getText());
+                
                 if (chosenImage.getText().length() == 0) {
 //                            logger.getLogger().log(Level.WARNING, "User submitted an empty field text (File Name)");
                     System.out.println("User submitted an empty field text (File Name)");
@@ -271,5 +296,33 @@ public class hideText extends JPanel {
             }
         };
         execute.start();
+    }
+    public static void removeBlankLines(String image){
+        String tempImage = ImageConverter.getOutputPathFromInputPath(image, "temp");
+        File file1 = new File(image);
+        File file2 = new File(tempImage);
+        
+        try {
+            Scanner fileScan = new Scanner(file1);
+            PrintWriter writer = new PrintWriter(tempImage);
+
+            while (fileScan.hasNext()) {
+                String line = fileScan.nextLine();
+                if (!line.isEmpty()) {
+                    writer.write(line);
+                    writer.write("\n");
+                }
+            }
+
+            fileScan.close();
+            writer.close();
+            
+            file1.delete();
+            file2.renameTo(file1);
+        }
+        catch(FileNotFoundException ex){
+            
+        }
+
     }
 }

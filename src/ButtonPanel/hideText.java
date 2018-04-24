@@ -16,12 +16,12 @@ import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
 import java.awt.dnd.DropTargetDropEvent;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Scanner;
+import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -30,6 +30,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
 import javax.swing.LayoutStyle;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
@@ -49,7 +51,8 @@ public class hideText extends JPanel {
     private JLabel entTxtLbl;
     private JLabel hdrLbl;
     private JButton submit;
-    private JTextField textEntered;
+    private JTextArea textEntered;
+    private JScrollPane scrollDown;
     private ImagePreview ip;
 
     public hideText() {
@@ -60,7 +63,8 @@ public class hideText extends JPanel {
 
         hdrLbl = new JLabel();
         entTxtLbl = new JLabel();
-        textEntered = new JTextField();
+        textEntered = new JTextArea();
+        scrollDown = new JScrollPane();
         chIooseImgLbl = new JLabel();
         chosenImage = new JTextField();
         browse = new JButton();
@@ -79,21 +83,25 @@ public class hideText extends JPanel {
         textEntered.setFont(new Font("Century", 0, 14)); // NOI18N
         textEntered.setToolTipText("Enter text you wish to hide");
         textEntered.setCursor(new Cursor(Cursor.TEXT_CURSOR));
+        textEntered.setLineWrap(true);
+        textEntered.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
+        scrollDown.setViewportView(textEntered);
 
         chIooseImgLbl.setFont(new Font("Georgia", 0, 18)); // NOI18N
         chIooseImgLbl.setText("Choose Image");
 
         // Drag and Drop Image
         chosenImage.setDropTarget(new DropTarget() {
+            @Override
             public synchronized void drop(DropTargetDropEvent evt) {
                 try {
                     evt.acceptDrop(DnDConstants.ACTION_COPY);
                     List<File> droppedFiles = (List<File>) evt
                             .getTransferable().getTransferData(
                                     DataFlavor.javaFileListFlavor);
-                    for (File file : droppedFiles) {
+                    droppedFiles.forEach((file) -> {
                         chosenImage.setText(file.getAbsolutePath());
-                    }
+                    });
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -120,7 +128,7 @@ public class hideText extends JPanel {
 
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
-        layout.setHorizontalGroup(
+                layout.setHorizontalGroup(
                 layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(50, 50, 50)
@@ -136,7 +144,7 @@ public class hideText extends JPanel {
                                                                 .addComponent(submit, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
                                                         .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                                                 .addComponent(entTxtLbl)
-                                                                .addComponent(textEntered, GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
+                                                                .addComponent(scrollDown, GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
                                                                 .addComponent(chIooseImgLbl)
                                                         .addGroup(layout.createSequentialGroup()
                                                                 .addComponent(chosenImage, 400, 400, 400)
@@ -153,7 +161,7 @@ public class hideText extends JPanel {
                                 .addGap(52, 52, 52)
                                 .addComponent(entTxtLbl)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(textEntered, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(scrollDown, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                                 .addComponent(chIooseImgLbl)
                                 .addGap(18, 18, 18)
@@ -168,7 +176,7 @@ public class hideText extends JPanel {
                                                         .addComponent(browse, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(submit, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
                                                         .addGap(65, 65, 65))))
-        );
+);
     }
 
     /**
@@ -202,14 +210,15 @@ public class hideText extends JPanel {
                     case "jpg":
                     case "gif":
                     case "png":
-                    case "ppm": break;
+                    case "ppm":
+                        break;
                     default:
                         chosenImage.setText("");
                         JFrame frame = new JFrame();
                         JOptionPane.showMessageDialog(frame, "Please select a valid image file.");
                         return;
                 }
-/* OLD IMAGE PREVIEW
+                /* OLD IMAGE PREVIEW
                 File img = new File(ImageConverter.getOutputPathFromInputPath(chosenImage.getText(), "jpg"));
                 ImagePreview ip = new ImagePreview(img, 200);
                 JFrame frame = new JFrame();
@@ -218,8 +227,8 @@ public class hideText extends JPanel {
                 frame.setSize(200, 240);
                 //frame.setDefaultCloseOperation(JFrame.);
                 frame.setVisible(true);
-*/
-                /*      //Code used for ImagePreview test
+                 */
+ /*      //Code used for ImagePreview test
                         File img = new File("tux.jpg");
                         ImagePreview ip = new ImagePreview(img, 150);
                         JFrame frame = new JFrame();
@@ -247,26 +256,28 @@ public class hideText extends JPanel {
                 String enteredText, encryptionText;
                 String fileChosen;
                 boolean flag = false;
-                
+
                 String ext = ImageConverter.getFileExtensionFromPath(chosenImage.getText());
-                
-                switch (ext){
+
+                switch (ext) {
                     case "jpeg":
                     case "jpg":
                     case "gif":
                     case "png":
-                                try {
-                                    ImageConverter.convert(chosenImage.getText(), "ppm");
-                                    chosenImage.setText(ImageConverter.getOutputPathFromInputPath(chosenImage.getText(), "ppm"));
-                                } catch (Exception ex) {
-                                  //Logger.getLogger(ButtonPanel.class.getName()).log(Level.SEVERE, null, ex);
-                                }
-                    case "ppm": break;
-                    default:    break;
+                        try {
+                            ImageConverter.convert(chosenImage.getText(), "ppm");
+                            chosenImage.setText(ImageConverter.getOutputPathFromInputPath(chosenImage.getText(), "ppm"));
+                        } catch (Exception ex) {
+                            //Logger.getLogger(ButtonPanel.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    case "ppm":
+                        break;
+                    default:
+                        break;
                 }
-                
+
                 removeBlankLines(chosenImage.getText());
-                
+
                 if (chosenImage.getText().length() == 0) {
 //                            logger.getLogger().log(Level.WARNING, "User submitted an empty field text (File Name)");
                     System.out.println("User submitted an empty field text (File Name)");
@@ -278,7 +289,7 @@ public class hideText extends JPanel {
                 }
                 enteredText = textEntered.getText();
                 encryptionText = Encryption.encryption.encrypt(enteredText);
-                
+
                 DisplayMessages.hideText(fileChosen, encryptionText, flag);
                 try {
                     String outPPM = fileChosen.substring(0, fileChosen.lastIndexOf(File.separator)) + "\\stego-image.ppm";
@@ -297,11 +308,12 @@ public class hideText extends JPanel {
         };
         execute.start();
     }
-    public static void removeBlankLines(String image){
+
+    public static void removeBlankLines(String image) {
         String tempImage = ImageConverter.getOutputPathFromInputPath(image, "temp");
         File file1 = new File(image);
         File file2 = new File(tempImage);
-        
+
         try {
             Scanner fileScan = new Scanner(file1);
             PrintWriter writer = new PrintWriter(tempImage);
@@ -316,12 +328,11 @@ public class hideText extends JPanel {
 
             fileScan.close();
             writer.close();
-            
+
             file1.delete();
             file2.renameTo(file1);
-        }
-        catch(FileNotFoundException ex){
-            
+        } catch (FileNotFoundException ex) {
+
         }
 
     }

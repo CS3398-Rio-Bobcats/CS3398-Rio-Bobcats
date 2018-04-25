@@ -288,9 +288,9 @@ public class hideText extends JPanel {
                     System.out.println("User submitted an empty field text (File Name)");
                 }
                 enteredText = textEntered.getText();
-                encryptionText = Encryption.encryption.encrypt(enteredText);
+                //encryptionText = Encryption.encryption.encrypt(enteredText);
 
-                DisplayMessages.hideText(fileChosen, encryptionText, flag);
+                DisplayMessages.hideText(fileChosen, enteredText, flag);
                 try {
                     String outPPM = fileChosen.substring(0, fileChosen.lastIndexOf(File.separator)) + "\\stego-image.ppm";
                     ImageConverter.convert(outPPM, "jpg");

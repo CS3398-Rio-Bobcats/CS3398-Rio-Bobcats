@@ -261,11 +261,11 @@ public class revealText extends JPanel {
                 Steganographer steg = new Steganographer(f1);
                 String result = steg.reveal(f2, "text");
                 String decryptedText = Encryption.decryption.decrypt(result);
-                JFrame frame = new JFrame();
-                JOptionPane.showMessageDialog(frame, "Hidden text: " + decryptedText);
+//                JFrame frame = new JFrame();
+//                JOptionPane.showMessageDialog(frame, "Hidden text: " + decryptedText);
 
 //                Text wrap around when displayed
-                msgDisplay = new JTextArea(result, 20, 50);
+                msgDisplay = new JTextArea(decryptedText, 20, 50);
                 msgDisplay.setWrapStyleWord(true);
                 msgDisplay.setLineWrap(true);
                 msgDisplay.setOpaque(false);

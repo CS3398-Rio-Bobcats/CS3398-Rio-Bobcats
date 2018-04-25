@@ -1,0 +1,3 @@
+Run the program on Netbeans which creates the .jar file.  
+Use a software called Launch4j "http://launch4j.sourceforge.net/" 
+to convert the .jar file into an Executable by uploading your .jar file to Launch4j. 

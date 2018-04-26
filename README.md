@@ -40,13 +40,11 @@ What has been done:
 
 ● Implement an automatic conversion to .ppm when file is chosen
 
-Additional features to be implemented (tentative):
-
-● Implement JUnit testing.
-
-● Create a logo
+● Created a logo
 
 ● Add Welcome Page to the application.
+
+● Made interface visually appealing and intuitively easy to use.
 
 ● Find error in source code to hide image in an image.
 
@@ -60,4 +58,5 @@ Additional features to be implemented (tentative):
 
 ● Data encryption - The masked data will be encrypted before it is merged with the image. A passphrase will be required to encrypt and decrypt the data.
 
-● Help text - A compiled help (.chm) file will be written that teaches the user how to use the program effectively.
+● Added wrap around for text fields and message displaying OptionPane
+
